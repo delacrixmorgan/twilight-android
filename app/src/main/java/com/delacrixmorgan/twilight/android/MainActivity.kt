@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
-        val fragment = ZoneListFragment.create()
+        val fragment = LocationListFragment.create()
 
         supportFragmentManager.commit {
             replace(android.R.id.content, fragment, fragment.javaClass.simpleName)
