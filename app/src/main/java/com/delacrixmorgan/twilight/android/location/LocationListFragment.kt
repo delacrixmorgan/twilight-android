@@ -1,20 +1,28 @@
 package com.delacrixmorgan.twilight.android.location
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.delacrixmorgan.twilight.android.R
-import com.delacrixmorgan.twilight.android.data.model.Location
+import com.delacrixmorgan.twilight.android.TimeTickBroadcastReceiver
+import com.delacrixmorgan.twilight.android.TimeTickListener
 import com.delacrixmorgan.twilight.android.data.controller.ZoneDataController
+import com.delacrixmorgan.twilight.android.data.model.Location
 import kotlinx.android.synthetic.main.fragment_location_list.*
+import java.util.*
 
-class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener {
+
+class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener, TimeTickListener {
 
     companion object {
         fun create() = LocationListFragment()
     }
+
+    private var tickReceiver: TimeTickBroadcastReceiver? = null
 
     private val adapter: LocationRecyclerViewAdapter by lazy {
         LocationRecyclerViewAdapter(this)
@@ -81,7 +89,25 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener {
         recyclerView.adapter = adapter
     }
 
+    override fun onResume() {
+        super.onResume()
+        tickReceiver = TimeTickBroadcastReceiver(this)
+        requireContext().registerReceiver(tickReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (tickReceiver != null) {
+            requireContext().unregisterReceiver(tickReceiver)
+        }
+    }
+
     override fun onLocationSelected(location: Location) {
 
+    }
+
+    override fun onTimeTicked() {
+        adapter.date = Date()
+        adapter.notifyDataSetChanged()
     }
 }

@@ -1,5 +1,6 @@
 package com.delacrixmorgan.twilight.android.location
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,7 @@ class LocationRecyclerViewAdapter(
         fun onLocationSelected(location: Location)
     }
 
-    private val date = Date()
+    var date = Date()
 
     var locations: MutableList<Location> = mutableListOf()
         set(value) {
