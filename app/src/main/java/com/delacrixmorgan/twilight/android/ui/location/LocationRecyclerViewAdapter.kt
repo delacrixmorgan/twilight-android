@@ -1,6 +1,5 @@
-package com.delacrixmorgan.twilight.android.location
+package com.delacrixmorgan.twilight.android.ui.location
 
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

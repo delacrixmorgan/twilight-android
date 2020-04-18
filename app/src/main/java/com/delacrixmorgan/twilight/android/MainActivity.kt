@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
-import com.delacrixmorgan.twilight.android.location.LocationListFragment
+import com.delacrixmorgan.twilight.android.ui.location.LocationListFragment
+import com.delacrixmorgan.twilight.android.ui.zone.ZoneListFragment
 import com.jakewharton.threetenabp.AndroidThreeTen
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
-        val fragment = LocationListFragment.create()
+        val fragment = ZoneListFragment.create()
 
         supportFragmentManager.commit {
             replace(android.R.id.content, fragment, fragment.javaClass.simpleName)

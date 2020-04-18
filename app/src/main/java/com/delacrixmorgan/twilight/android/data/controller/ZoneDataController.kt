@@ -23,7 +23,7 @@ object ZoneDataController {
             val keywords = it.extractKeywords()
             Zone(
                 timeZoneId = it,
-                name = keywords[1],
+                name = keywords[keywords.size - 1],
                 keywords = keywords
             )
         })
@@ -34,28 +34,24 @@ object ZoneDataController {
     }
 
     fun getZone(searchQuery: String? = null, searchQueries: List<String>? = null): List<Zone> {
-        val filteredList = mutableListOf<Zone>()
+        var filteredList = zones
 
         searchQuery?.let {
-            filteredList.addAll(
-                zones.filter {
-                    it.keywords.any { keyword ->
-                        keyword.contains(searchQuery, ignoreCase = true)
-                    }
-                }.toMutableList()
-            )
+            filteredList = filteredList.filter {
+                it.keywords.any { keyword ->
+                    keyword.contains(searchQuery, ignoreCase = true)
+                }
+            }.toMutableList()
         }
 
         searchQueries?.forEach { query ->
-            filteredList.addAll(
-                zones.filter {
-                    it.keywords.any { keyword ->
-                        keyword.contains(query, ignoreCase = true)
-                    }
-                }.toMutableList()
-            )
+            filteredList = filteredList.filter {
+                it.keywords.any { keyword ->
+                    keyword.contains(query, ignoreCase = true)
+                }
+            }.toMutableList()
         }
 
-        return filteredList
+        return filteredList.distinctBy { it.uuid }
     }
 }

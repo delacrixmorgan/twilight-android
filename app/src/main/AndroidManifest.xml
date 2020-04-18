@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <receiver
-            android:name="com.delacrixmorgan.twilight.android.TimeTickBroadcastReceiver"
+            android:name="com.delacrixmorgan.twilight.android.service.TimeTickBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.TIME_TICK" />

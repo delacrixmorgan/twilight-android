@@ -1,4 +1,4 @@
-package com.delacrixmorgan.twilight.android.location
+package com.delacrixmorgan.twilight.android.ui.location
 
 import android.content.Intent
 import android.content.IntentFilter
@@ -8,15 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.delacrixmorgan.twilight.android.R
-import com.delacrixmorgan.twilight.android.TimeTickBroadcastReceiver
-import com.delacrixmorgan.twilight.android.TimeTickListener
 import com.delacrixmorgan.twilight.android.data.controller.ZoneDataController
 import com.delacrixmorgan.twilight.android.data.model.Location
+import com.delacrixmorgan.twilight.android.service.TimeTickBroadcastReceiver
+import com.delacrixmorgan.twilight.android.service.TimeTickListener
 import kotlinx.android.synthetic.main.fragment_location_list.*
 import java.util.*
 
-
-class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener, TimeTickListener {
+class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
+    TimeTickListener {
 
     companion object {
         fun create() = LocationListFragment()
@@ -91,7 +91,10 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener, T
 
     override fun onResume() {
         super.onResume()
-        tickReceiver = TimeTickBroadcastReceiver(this)
+        tickReceiver =
+            TimeTickBroadcastReceiver(
+                this
+            )
         requireContext().registerReceiver(tickReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
     }
 

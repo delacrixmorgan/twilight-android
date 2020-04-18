@@ -1,11 +1,19 @@
 package com.delacrixmorgan.twilight.android
 
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
 import org.threeten.bp.DateTimeUtils
 import org.threeten.bp.Instant
 import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
+
+fun Fragment.hideKeyboard() {
+    val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(view?.windowToken, 0)
+}
 
 fun Date.toZonedDateTime(): ZonedDateTime {
     val calendar = Calendar.getInstance().apply { time = this@toZonedDateTime }
@@ -30,10 +38,14 @@ fun String.toDateFormat(): Date {
 
 fun String.extractKeywords(): List<String> {
     val splitString = this.split("/")
-    val name = splitString[1].replace("_", " ")
-    val list = mutableListOf(splitString[0], name)
+    val list = mutableListOf<String>()
 
-    name.addExceptions(list)
+    splitString.forEach {
+        val name = it.replace("_", " ")
+        name.addExceptions(list)
+        list.add(name)
+    }
+
     return list
 }
 

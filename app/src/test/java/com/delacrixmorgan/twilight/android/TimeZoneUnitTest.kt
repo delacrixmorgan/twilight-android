@@ -24,7 +24,7 @@ class TimeZoneUnitTest {
             val keywords = it.extractKeywords()
             Zone(
                 timeZoneId = it,
-                name = keywords[1],
+                name = keywords[keywords.size - 1],
                 keywords = keywords
             )
         })
