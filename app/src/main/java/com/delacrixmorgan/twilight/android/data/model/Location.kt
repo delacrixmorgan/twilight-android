@@ -1,13 +1,17 @@
 package com.delacrixmorgan.twilight.android.data.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.delacrixmorgan.twilight.android.data.controller.ZoneDataController
 import java.util.*
 
+@Entity(tableName = "Location")
 data class Location(
-    val uuid: String = UUID.randomUUID().toString(),
-    val zoneUuid: String,
-    val name: String,
-    val personName: String? = null
+    @PrimaryKey val uuid: String = UUID.randomUUID().toString(),
+    @ColumnInfo(name = "zoneUuid") val zoneUuid: String,
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "personName") val personName: String? = null
 ) {
     val zone: Zone?
         get() {
