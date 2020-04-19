@@ -12,11 +12,12 @@ import com.delacrixmorgan.twilight.android.data.controller.ZoneDataController
 import com.delacrixmorgan.twilight.android.data.model.Location
 import com.delacrixmorgan.twilight.android.service.TimeTickBroadcastReceiver
 import com.delacrixmorgan.twilight.android.service.TimeTickListener
+import com.delacrixmorgan.twilight.android.ui.BottomNavigationBottomSheetFragment
 import kotlinx.android.synthetic.main.fragment_location_list.*
 import java.util.*
 
 class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
-    TimeTickListener {
+    TimeTickListener, BottomNavigationBottomSheetFragment.Listener {
 
     companion object {
         fun create() = LocationListFragment()
@@ -87,6 +88,23 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
 
         adapter.locations = locations
         recyclerView.adapter = adapter
+
+
+        bottomAppBar.setNavigationOnClickListener {
+            showBottomNavigationView()
+        }
+
+        addButton.setOnClickListener {
+
+        }
+    }
+
+    private fun showBottomNavigationView() {
+        val bottomNavigationBottomSheetFragment = BottomNavigationBottomSheetFragment.create(this)
+        bottomNavigationBottomSheetFragment.show(
+            requireActivity().supportFragmentManager,
+            bottomNavigationBottomSheetFragment.javaClass.simpleName
+        )
     }
 
     override fun onResume() {
@@ -112,5 +130,16 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
     override fun onTimeTicked() {
         adapter.date = Date()
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onNavigationViewSelected(menuItems: BottomNavigationBottomSheetFragment.MenuItems) {
+        when (menuItems) {
+            BottomNavigationBottomSheetFragment.MenuItems.Credits -> {
+
+            }
+            BottomNavigationBottomSheetFragment.MenuItems.About -> {
+
+            }
+        }
     }
 }
