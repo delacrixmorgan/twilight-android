@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.delacrixmorgan.twilight.android.R
 import com.delacrixmorgan.twilight.android.data.controller.LocationDataController
+import com.delacrixmorgan.twilight.android.data.model.FormType
 import com.delacrixmorgan.twilight.android.data.model.Location
 import com.delacrixmorgan.twilight.android.service.TimeTickBroadcastReceiver
 import com.delacrixmorgan.twilight.android.service.TimeTickListener
@@ -51,7 +52,7 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
         }
 
         addButton.setOnClickListener {
-            launchFormActivity()
+            launchFormActivity(formType = FormType.Create)
         }
     }
 
@@ -61,7 +62,7 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
             REQUEST_ADD_NEW_LOCATION -> {
                 if (resultCode == Activity.RESULT_OK) {
                     adapter.locations = LocationDataController.getLocation().toMutableList()
-                    recyclerView.smoothScrollToPosition(adapter.locations.size)
+                    adapter.notifyDataSetChanged()
                 }
             }
         }
@@ -75,8 +76,8 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
         )
     }
 
-    private fun launchFormActivity() {
-        val intent = FormActivity.create(requireContext())
+    private fun launchFormActivity(formType: FormType, location: Location? = null) {
+        val intent = FormActivity.create(requireContext(), formType, location)
         startActivityForResult(intent, REQUEST_ADD_NEW_LOCATION)
     }
 
@@ -113,7 +114,7 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
     }
 
     override fun onLocationSelected(location: Location) {
-
+        launchFormActivity(formType = FormType.Edit, location = location)
     }
 
     override fun onTimeTicked() {

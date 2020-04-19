@@ -40,13 +40,13 @@ class ZoneListFragment : Fragment(), ZoneRecyclerViewAdapter.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchEditText.doAfterTextChanged {
+        searchTextView.doAfterTextChanged {
             adapter.zones = ZoneDataController.getZone(
                 searchQuery = it?.toString()
             ).toMutableList()
         }
 
-        searchEditText.setOnEditorActionListener { _, actionId, _ ->
+        searchTextView.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 hideKeyboard()
             }

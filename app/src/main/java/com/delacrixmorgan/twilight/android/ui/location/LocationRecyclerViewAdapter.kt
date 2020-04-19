@@ -8,10 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.delacrixmorgan.twilight.android.R
 import com.delacrixmorgan.twilight.android.data.model.Location
-import com.delacrixmorgan.twilight.android.toZonedDateTime
 import kotlinx.android.synthetic.main.cell_location_list.view.*
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 
@@ -45,6 +42,7 @@ class LocationRecyclerViewAdapter(
             }, true)
 
             field = value
+            field.sortByDescending { it.getCurrentZonedDateTime(date).offset }
             diffResult.dispatchUpdatesTo(this)
         }
 
@@ -62,12 +60,10 @@ class LocationRecyclerViewAdapter(
 
     inner class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(location: Location) = with(itemView) {
-            val zoneId = ZoneId.of(location.zone?.timeZoneId)
-            val zonedDateTime = ZonedDateTime.ofInstant(date.toZonedDateTime().toInstant(), zoneId)
-
+            val zonedDateTime = location.getCurrentZonedDateTime(date)
             val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
             val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEEE, d MMMM"))
-            
+
             timeTextView.text = timeString
             dayTextView.text = dayString
 

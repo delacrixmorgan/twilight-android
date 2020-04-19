@@ -16,4 +16,7 @@ interface LocationDataDao {
 
     @Query("DELETE from Location")
     suspend fun deleteLocations()
+
+    @Query("DELETE FROM Location WHERE uuid = :uuid")
+    suspend fun deleteLocationById(uuid: String)
 }

@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="16dp"
             android:text="Choose your timezone"
             android:textAlignment="center"
             android:textAppearance="@style/Body" />
@@ -37,23 +37,19 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             app:cardCornerRadius="1dp"
-            app:cardElevation="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:cardElevation="1dp">
 
-            <EditText
-                android:id="@+id/searchEditText"
+            <TextView
+                android:id="@+id/searchTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:clickable="false"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="16dp"
-                android:enabled="false"
-                android:hint="@string/search"
-                android:importantForAutofill="no"
-                android:inputType="textCapWords"
+                android:focusable="false"
+                android:gravity="center_vertical"
                 android:maxLines="1"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
@@ -65,7 +61,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="16dp"
             android:text="Location Name"
             android:textAlignment="center"
             android:textAppearance="@style/Body" />
@@ -77,10 +73,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             app:cardCornerRadius="1dp"
-            app:cardElevation="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:cardElevation="1dp">
 
             <EditText
                 android:id="@+id/locationNameEditText"
@@ -103,8 +96,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Who Lives Here?"
+            android:padding="16dp"
+            android:text="Who Lives Here"
             android:textAlignment="center"
             android:textAppearance="@style/Body" />
 
@@ -115,10 +108,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             app:cardCornerRadius="1dp"
-            app:cardElevation="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:cardElevation="1dp">
 
             <EditText
                 android:id="@+id/personNameEditText"
@@ -127,7 +117,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:drawablePadding="16dp"
-                android:hint="@string/search"
+                android:hint="Optional"
                 android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:maxLines="1"
@@ -138,14 +128,41 @@
                 tools:ignore="LabelFor" />
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/doneButton"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:enabled="false"
-            android:text="Done"
-            android:textAlignment="center" />
+            android:layout_marginTop="100dp">
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/deleteButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/colorError"
+                android:text="Delete"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/actionButton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/actionButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:enabled="false"
+                android:text="Done"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/deleteButton" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

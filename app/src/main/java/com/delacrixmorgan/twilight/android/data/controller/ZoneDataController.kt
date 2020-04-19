@@ -8,10 +8,6 @@ object ZoneDataController {
     private var zones = mutableListOf<Zone>()
 
     init {
-        setup()
-    }
-
-    fun setup() {
         val availableZones = ZoneId.getAvailableZoneIds()
         val filteredZones = availableZones.filter {
             it.contains("America/") || it.contains("US/")

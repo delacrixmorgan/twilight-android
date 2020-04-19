@@ -34,15 +34,20 @@ class LaunchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
-            ZoneDataController.setup()
             locationDataDao = LocationDatabase.getInstance(requireContext())?.locationDataDao()
 
-            val locations = locationDataDao?.getLocations()
-            if (!locations.isNullOrEmpty()) {
-                LocationDataController.locations = locations.toMutableList()
-                launchLocationListFragment()
+            if (BuildConfig.DEBUG) {
+                val locations = locationDataDao?.getLocations()
+                if (!locations.isNullOrEmpty()) {
+                    LocationDataController.locations = locations.toMutableList()
+                    launchLocationListFragment()
+                } else {
+                    fetchLocations()
+                }
             } else {
-                fetchLocations()
+                val locations = locationDataDao?.getLocations()
+                LocationDataController.locations = locations?.toMutableList() ?: mutableListOf()
+                launchLocationListFragment()
             }
         }
     }
@@ -61,12 +66,14 @@ class LaunchFragment : Fragment() {
                 Location(
                     name = "Columbus",
                     personName = "Yang",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Columbus").first().timeZoneId
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Columbus")
+                        .first().timeZoneId
                 ),
                 Location(
                     name = "New Jersey",
                     personName = "Ze-Xin, Ze-Wen",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "New Jersey").first().timeZoneId
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "New Jersey")
+                        .first().timeZoneId
                 ),
                 Location(
                     name = "San Francisco",
@@ -77,27 +84,32 @@ class LaunchFragment : Fragment() {
                 Location(
                     name = "London",
                     personName = "Ian",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "London").first().timeZoneId
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "London")
+                        .first().timeZoneId
                 ),
                 Location(
                     name = "Perth",
                     personName = "Teck Hun",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Perth").first().timeZoneId
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Perth")
+                        .first().timeZoneId
                 ),
                 Location(
                     name = "Tasmania",
                     personName = "Grace",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Tasmania").first().timeZoneId
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Tasmania")
+                        .first().timeZoneId
                 ),
                 Location(
                     name = "Melbourne",
                     personName = "Maggie",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Melbourne").first().timeZoneId
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Melbourne")
+                        .first().timeZoneId
                 ),
                 Location(
                     name = "Auckland",
                     personName = "Thomas",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Auckland").first().timeZoneId
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Auckland")
+                        .first().timeZoneId
                 )
             )
         )
