@@ -3,6 +3,7 @@ package com.delacrixmorgan.twilight.android.ui.location
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.delacrixmorgan.twilight.android.R
@@ -66,12 +67,13 @@ class LocationRecyclerViewAdapter(
 
             val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
             val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEEE, d MMMM"))
-
+            
             timeTextView.text = timeString
             dayTextView.text = dayString
 
-            personNameTextView.text = location.personName
             locationNameTextView.text = location.name
+            personNameTextView.text = location.personName
+            personNameTextView.isVisible = location.personName?.isNotEmpty() == true
 
             setOnClickListener {
                 listener.onLocationSelected(location)

@@ -16,8 +16,16 @@ import kotlinx.android.synthetic.main.fragment_zone_list.*
 class ZoneListFragment : Fragment(), ZoneRecyclerViewAdapter.Listener {
 
     companion object {
-        fun create() = ZoneListFragment()
+        fun create(listener: Listener) = ZoneListFragment().apply {
+            this.listener = listener
+        }
     }
+
+    interface Listener {
+        fun onZoneSelected(zone: Zone)
+    }
+
+    private lateinit var listener: Listener
 
     private val adapter: ZoneRecyclerViewAdapter by lazy {
         ZoneRecyclerViewAdapter(this)
@@ -50,6 +58,7 @@ class ZoneListFragment : Fragment(), ZoneRecyclerViewAdapter.Listener {
     }
 
     override fun onZoneSelected(zone: Zone) {
-
+        listener.onZoneSelected(zone)
+        activity?.supportFragmentManager?.popBackStack()
     }
 }

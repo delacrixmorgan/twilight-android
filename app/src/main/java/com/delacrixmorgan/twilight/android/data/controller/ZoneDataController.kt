@@ -8,6 +8,10 @@ object ZoneDataController {
     private var zones = mutableListOf<Zone>()
 
     init {
+        setup()
+    }
+
+    fun setup() {
         val availableZones = ZoneId.getAvailableZoneIds()
         val filteredZones = availableZones.filter {
             it.contains("America/") || it.contains("US/")
@@ -19,18 +23,18 @@ object ZoneDataController {
                     || it.contains("Africa/")
         }
 
-        zones.addAll(filteredZones.map {
+        zones = filteredZones.map {
             val keywords = it.extractKeywords()
             Zone(
                 timeZoneId = it,
                 name = keywords[keywords.size - 1],
                 keywords = keywords
             )
-        })
+        }.toMutableList()
     }
 
-    fun getZoneById(uuid: String): Zone? {
-        return zones.firstOrNull { it.uuid == uuid }
+    fun getZoneById(timeZoneId: String): Zone? {
+        return zones.firstOrNull { it.timeZoneId == timeZoneId }
     }
 
     fun getZone(searchQuery: String? = null, searchQueries: List<String>? = null): List<Zone> {

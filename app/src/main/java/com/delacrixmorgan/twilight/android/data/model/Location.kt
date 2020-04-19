@@ -9,12 +9,12 @@ import java.util.*
 @Entity(tableName = "Location")
 data class Location(
     @PrimaryKey val uuid: String = UUID.randomUUID().toString(),
-    @ColumnInfo(name = "zoneUuid") val zoneUuid: String,
+    @ColumnInfo(name = "timeZoneId") val timeZoneId: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "personName") val personName: String? = null
 ) {
     val zone: Zone?
         get() {
-            return ZoneDataController.getZoneById(zoneUuid)
+            return ZoneDataController.getZoneById(timeZoneId)
         }
 }

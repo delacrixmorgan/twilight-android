@@ -54,6 +54,9 @@ fun String.addExceptions(list: MutableList<String>) {
         "Kuala Lumpur" -> {
             listOf("Malaysia", "Klang", "Shah Alam", "Rawang", "Subang Jaya")
         }
+        "Ho Chi Minh" -> {
+            listOf("Hanoi", "Vietnam", "Saigon")
+        }
         "Los Angeles" -> {
             listOf("San Francisco")
         }

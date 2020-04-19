@@ -1,5 +1,6 @@
 package com.delacrixmorgan.twilight.android.ui.location
 
+import android.app.Activity
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.delacrixmorgan.twilight.android.service.TimeTickListener
 import com.delacrixmorgan.twilight.android.ui.BottomNavigationBottomSheetFragment
 import com.delacrixmorgan.twilight.android.ui.about.AboutFragment
 import com.delacrixmorgan.twilight.android.ui.credit.CreditFragment
+import com.delacrixmorgan.twilight.android.ui.form.FormActivity
 import kotlinx.android.synthetic.main.fragment_location_list.*
 import java.util.*
 
@@ -23,14 +25,13 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
     TimeTickListener, BottomNavigationBottomSheetFragment.Listener {
 
     companion object {
+        private const val REQUEST_ADD_NEW_LOCATION = 1
         fun create() = LocationListFragment()
     }
 
     private var tickReceiver: TimeTickBroadcastReceiver? = null
 
-    private val adapter: LocationRecyclerViewAdapter by lazy {
-        LocationRecyclerViewAdapter(this)
-    }
+    private val adapter = LocationRecyclerViewAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,13 +46,24 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
         adapter.locations = LocationDataController.getLocation().toMutableList()
         recyclerView.adapter = adapter
 
-
         bottomAppBar.setNavigationOnClickListener {
             showBottomNavigationView()
         }
 
         addButton.setOnClickListener {
+            launchFormActivity()
+        }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_ADD_NEW_LOCATION -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    adapter.locations = LocationDataController.getLocation().toMutableList()
+                    recyclerView.smoothScrollToPosition(adapter.locations.size)
+                }
+            }
         }
     }
 
@@ -61,6 +73,11 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
             requireActivity().supportFragmentManager,
             bottomNavigationBottomSheetFragment.javaClass.simpleName
         )
+    }
+
+    private fun launchFormActivity() {
+        val intent = FormActivity.create(requireContext())
+        startActivityForResult(intent, REQUEST_ADD_NEW_LOCATION)
     }
 
     private fun launchCreditFragment() {

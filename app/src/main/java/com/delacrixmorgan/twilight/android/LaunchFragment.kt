@@ -34,7 +34,9 @@ class LaunchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
+            ZoneDataController.setup()
             locationDataDao = LocationDatabase.getInstance(requireContext())?.locationDataDao()
+
             val locations = locationDataDao?.getLocations()
             if (!locations.isNullOrEmpty()) {
                 LocationDataController.locations = locations.toMutableList()
@@ -59,47 +61,46 @@ class LaunchFragment : Fragment() {
                 Location(
                     name = "Columbus",
                     personName = "Yang",
-                    zoneUuid = ZoneDataController.getZone(searchQuery = "Columbus").first().uuid
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Columbus").first().timeZoneId
                 ),
                 Location(
                     name = "New Jersey",
                     personName = "Ze-Xin, Ze-Wen",
-                    zoneUuid = ZoneDataController.getZone(searchQuery = "New Jersey").first().uuid
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "New Jersey").first().timeZoneId
                 ),
                 Location(
                     name = "San Francisco",
                     personName = "Michael",
-                    zoneUuid = ZoneDataController.getZone(searchQuery = "San Francisco")
-                        .first().uuid
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "San Francisco")
+                        .first().timeZoneId
                 ),
                 Location(
                     name = "London",
                     personName = "Ian",
-                    zoneUuid = ZoneDataController.getZone(searchQuery = "London").first().uuid
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "London").first().timeZoneId
                 ),
                 Location(
                     name = "Perth",
                     personName = "Teck Hun",
-                    zoneUuid = ZoneDataController.getZone(searchQuery = "Perth").first().uuid
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Perth").first().timeZoneId
                 ),
                 Location(
                     name = "Tasmania",
                     personName = "Grace",
-                    zoneUuid = ZoneDataController.getZone(searchQuery = "Tasmania").first().uuid
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Tasmania").first().timeZoneId
                 ),
                 Location(
                     name = "Melbourne",
                     personName = "Maggie",
-                    zoneUuid = ZoneDataController.getZone(searchQuery = "Melbourne").first().uuid
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Melbourne").first().timeZoneId
                 ),
                 Location(
                     name = "Auckland",
                     personName = "Thomas",
-                    zoneUuid = ZoneDataController.getZone(searchQuery = "Auckland").first().uuid
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Auckland").first().timeZoneId
                 )
             )
         )
-
         addLocationDatabase(locations)
     }
 
