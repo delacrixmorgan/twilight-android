@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.delacrixmorgan.twilight.android.R
+import com.delacrixmorgan.twilight.android.data.controller.ColorController
 import com.delacrixmorgan.twilight.android.data.model.Location
 import kotlinx.android.synthetic.main.cell_location_list.view.*
 import org.threeten.bp.format.DateTimeFormatter
@@ -63,6 +64,15 @@ class LocationRecyclerViewAdapter(
             val zonedDateTime = location.getCurrentZonedDateTime(date)
             val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
             val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEEE, d MMMM"))
+
+            val textColor = ColorController.getTextColorTint(context, zonedDateTime)
+            val backgroundColor = ColorController.getBackgroundColorTint(context, zonedDateTime)
+
+            dayTextView.setTextColor(textColor)
+            timeTextView.setTextColor(textColor)
+            personNameTextView.setTextColor(textColor)
+            locationNameTextView.setTextColor(textColor)
+            containerViewGroup.setBackgroundColor(backgroundColor)
 
             timeTextView.text = timeString
             dayTextView.text = dayString
