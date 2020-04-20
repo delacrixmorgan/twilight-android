@@ -7,4 +7,7 @@ data class Zone(
     val timeZoneId: String,
     val name: String,
     val keywords: List<String>
-)
+) {
+    val regionZoneName: String
+        get() = "${keywords[0]}/${keywords[keywords.size - 1]}"
+}

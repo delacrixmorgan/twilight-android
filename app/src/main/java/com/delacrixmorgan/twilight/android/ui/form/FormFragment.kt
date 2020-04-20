@@ -21,6 +21,7 @@ import com.delacrixmorgan.twilight.android.data.model.Location
 import com.delacrixmorgan.twilight.android.data.model.Zone
 import com.delacrixmorgan.twilight.android.ui.zone.ZoneListFragment
 import kotlinx.android.synthetic.main.fragment_form.*
+import kotlinx.android.synthetic.main.layout_navigation_bar.view.*
 import kotlinx.coroutines.launch
 
 class FormFragment : Fragment(), ZoneListFragment.Listener {
@@ -37,17 +38,15 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
         }
     }
 
-    data class LocationParams(
-        var zone: Zone? = null,
-        var name: String? = null,
-        var personName: String? = null
-    )
-
     private var location: Location? = null
-    private val params = LocationParams()
     private var locationDataDao: LocationDataDao? = null
 
     private lateinit var formType: FormType
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        locationDataDao = LocationDatabase.getInstance(requireContext())?.locationDataDao()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,44 +57,37 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         formType = arguments?.getSerializable(Keys.Form.FormType.name) as FormType
 
         when (formType) {
             FormType.Create -> {
                 deleteButton.isVisible = false
-                actionButton.text = "Done"
+                navigationBar.actionButton.text = getString(R.string.done)
+                navigationBar.titleTextView.text = "Create a User"
+                location = Location()
             }
             FormType.Edit -> {
                 location = LocationDataController.getLocationById(
                     requireNotNull(arguments?.getString(Keys.Form.LocationUuid.name))
                 )
-
-                params.apply {
-                    zone = location?.zone
-                    name = location?.name
-                    personName = location?.personName
-                }
-
-                updateViews(location?.zone)
-
                 deleteButton.isVisible = true
-                actionButton.text = "Save"
+                navigationBar.titleTextView.text = "Edit User"
+                navigationBar.actionButton.text = getString(R.string.save)
+
+                updateViews()
             }
         }
 
-        if (params.zone == null) {
+        if (location?.zone == null) {
             launchZoneListFragment()
         }
 
-        locationDataDao = LocationDatabase.getInstance(requireContext())?.locationDataDao()
-
         locationNameEditText.doAfterTextChanged {
-            params.name = it?.toString()
+            location?.name = it.toString()
         }
 
         personNameEditText.doAfterTextChanged {
-            params.personName = it?.toString()
+            location?.personName = it.toString()
         }
 
         searchCardView.setOnClickListener {
@@ -106,36 +98,28 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
             deleteLocation()
         }
 
-        actionButton.setOnClickListener {
-            updateViews()
+        navigationBar.backButton.setOnClickListener {
+            activity?.finish()
+        }
+
+        navigationBar.actionButton.setOnClickListener {
+            location?.name = if (!location?.name.isNullOrBlank()) {
+                location?.name
+            } else {
+                location?.zone?.name
+            } ?: "Location"
             updateLocation()
         }
     }
 
     private fun updateLocation() {
-        val name = if (!params.name.isNullOrBlank()) {
-            params.name
-        } else {
-            params.zone?.name
-        } ?: "Location"
-
-        val createLocation = Location(
-            timeZoneId = requireNotNull(params.zone?.timeZoneId),
-            name = name,
-            personName = params.personName
-        )
-
         lifecycleScope.launch {
             when (formType) {
                 FormType.Create -> {
-                    locationDataDao?.insertLocation(createLocation)
-                    LocationDataController.locations.add(createLocation)
+                    locationDataDao?.insertLocation(requireNotNull(location))
+                    LocationDataController.locations.add(requireNotNull(location))
                 }
                 FormType.Edit -> {
-                    location?.timeZoneId = requireNotNull(params.zone?.timeZoneId)
-                    location?.personName = params.personName
-                    location?.name = params.name.toString()
-
                     locationDataDao?.updateLocation(requireNotNull(location))
                     val index = LocationDataController.locations.indexOfFirst {
                         it.uuid == location?.uuid
@@ -166,19 +150,16 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
         }
     }
 
-    private fun updateViews(zone: Zone? = null) {
-        actionButton.isEnabled = params.zone != null
-
-        zone?.let {
-            searchTextView.text = "${zone.keywords[0]}/${zone.keywords[zone.keywords.size - 1]}"
-            locationNameEditText.setText(zone.name)
-            locationNameEditText.setSelection(zone.name.length)
-            personNameEditText.setText(location?.personName)
-        }
+    private fun updateViews() {
+        navigationBar.actionButton.isEnabled = location?.zone != null
+        personNameEditText.setText(location?.personName)
+        locationNameEditText.setText(location?.zone?.name)
+        searchTextView.text = location?.zone?.regionZoneName
+        locationNameEditText.setSelection(location?.zone?.name?.length ?: 0)
     }
 
     override fun onZoneSelected(zone: Zone) {
-        params.zone = zone
-        updateViews(zone)
+        location?.timeZoneId = zone.timeZoneId
+        updateViews()
     }
 }

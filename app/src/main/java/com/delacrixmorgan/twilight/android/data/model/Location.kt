@@ -12,8 +12,8 @@ import java.util.*
 @Entity(tableName = "Location")
 data class Location(
     @PrimaryKey val uuid: String = UUID.randomUUID().toString(),
-    @ColumnInfo(name = "timeZoneId") var timeZoneId: String,
-    @ColumnInfo(name = "name") var name: String,
+    @ColumnInfo(name = "timeZoneId") var timeZoneId: String? = null,
+    @ColumnInfo(name = "name") var name: String? = null,
     @ColumnInfo(name = "personName") var personName: String? = null
 ) {
     val zone: Zone?

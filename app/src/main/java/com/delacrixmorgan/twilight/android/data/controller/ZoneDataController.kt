@@ -29,7 +29,7 @@ object ZoneDataController {
         }.toMutableList()
     }
 
-    fun getZoneById(timeZoneId: String): Zone? {
+    fun getZoneById(timeZoneId: String?): Zone? {
         return zones.firstOrNull { it.timeZoneId == timeZoneId }
     }
 
