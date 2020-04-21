@@ -99,11 +99,9 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
 
     override fun onResume() {
         super.onResume()
-        tickReceiver =
-            TimeTickBroadcastReceiver(
-                this
-            )
+        tickReceiver = TimeTickBroadcastReceiver(this)
         requireContext().registerReceiver(tickReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
+        adapter.locations = LocationDataController.getLocation().toMutableList()
     }
 
     override fun onPause() {

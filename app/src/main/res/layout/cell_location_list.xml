@@ -5,67 +5,48 @@
     android:id="@+id/containerViewGroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selectableItemBackground">
+    android:background="?selectableItemBackground"
+    android:paddingStart="32dp"
+    android:paddingTop="22dp"
+    android:paddingEnd="32dp"
+    android:paddingBottom="22dp">
+
+    <TextView
+        android:id="@+id/personNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:maxLines="1"
+        android:textAppearance="@style/Headline"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/timeTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Aerith" />
 
     <TextView
         android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:textAppearance="@style/Headline"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="12:00 AM" />
-
-    <TextView
-        android:id="@+id/dayTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp"
-        android:textAppearance="@style/Caption1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/personNameTextView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeTextView"
-        tools:text="Friday, 1 April" />
-
-    <TextView
-        android:id="@+id/personNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:textAppearance="@style/Subhead"
-        app:layout_constraintBottom_toTopOf="@id/locationNameTextView"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/dayTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Aerith" />
+        tools:text="07:30 AM" />
 
     <TextView
-        android:id="@+id/locationNameTextView"
+        android:id="@+id/dayTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:textAppearance="@style/Caption1"
+        android:textAppearance="@style/Caption2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/personNameTextView"
-        tools:text="Midgar" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/colorGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/timeTextView"
+        tools:text="Wed, 21 April" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

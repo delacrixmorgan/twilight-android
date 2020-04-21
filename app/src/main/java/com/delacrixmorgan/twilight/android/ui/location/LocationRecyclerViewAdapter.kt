@@ -3,7 +3,6 @@ package com.delacrixmorgan.twilight.android.ui.location
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.delacrixmorgan.twilight.android.R
@@ -63,7 +62,7 @@ class LocationRecyclerViewAdapter(
         fun bind(location: Location) = with(itemView) {
             val zonedDateTime = location.getCurrentZonedDateTime(date)
             val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
-            val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEEE, d MMMM"))
+            val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEE, d MMMM"))
 
             val textColor = ColorController.getTextColorTint(context, zonedDateTime)
             val backgroundColor = ColorController.getBackgroundColorTint(context, zonedDateTime)
@@ -71,15 +70,16 @@ class LocationRecyclerViewAdapter(
             dayTextView.setTextColor(textColor)
             timeTextView.setTextColor(textColor)
             personNameTextView.setTextColor(textColor)
-            locationNameTextView.setTextColor(textColor)
             containerViewGroup.setBackgroundColor(backgroundColor)
 
             timeTextView.text = timeString
             dayTextView.text = dayString
 
-            locationNameTextView.text = location.name
-            personNameTextView.text = location.personName
-            personNameTextView.isVisible = location.personName?.isNotEmpty() == true
+            if (!location.personName.isNullOrBlank()) {
+                personNameTextView.text = location.personName
+            } else {
+                personNameTextView.text = location.name
+            }
 
             setOnClickListener {
                 listener.onLocationSelected(location)
