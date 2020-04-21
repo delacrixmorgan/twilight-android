@@ -101,7 +101,7 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
         super.onResume()
         tickReceiver = TimeTickBroadcastReceiver(this)
         requireContext().registerReceiver(tickReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
-        adapter.locations = LocationDataController.getLocation().toMutableList()
+        adapter.notifyDataSetChanged()
     }
 
     override fun onPause() {

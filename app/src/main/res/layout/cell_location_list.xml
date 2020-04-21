@@ -5,11 +5,12 @@
     android:id="@+id/containerViewGroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selectableItemBackground"
+    android:foreground="?selectableItemBackground"
     android:paddingStart="32dp"
     android:paddingTop="22dp"
     android:paddingEnd="32dp"
-    android:paddingBottom="22dp">
+    android:paddingBottom="22dp"
+    tools:targetApi="m">
 
     <TextView
         android:id="@+id/personNameTextView"
@@ -31,7 +32,7 @@
         android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/Subhead"
+        android:textAppearance="@style/Callout"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/dayTextView"
         app:layout_constraintEnd_toEndOf="parent"

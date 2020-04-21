@@ -8,13 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.delacrixmorgan.twilight.android.R
 import com.delacrixmorgan.twilight.android.data.controller.ColorController
 import com.delacrixmorgan.twilight.android.data.model.Location
+import com.delacrixmorgan.twilight.android.toZonedDateTime
+import kotlinx.android.synthetic.main.cell_location_header.view.*
 import kotlinx.android.synthetic.main.cell_location_list.view.*
 import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 
 class LocationRecyclerViewAdapter(
     val listener: Listener
-) : RecyclerView.Adapter<LocationRecyclerViewAdapter.LocationViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     interface Listener {
         fun onLocationSelected(location: Location)
     }
@@ -46,17 +48,56 @@ class LocationRecyclerViewAdapter(
             diffResult.dispatchUpdatesTo(this)
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
-        return LocationViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.cell_location_list, parent, false)
-        )
+    enum class ViewHolderType {
+        Header,
+        Item
     }
 
-    override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
-        holder.bind(locations[position])
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> ViewHolderType.Header.ordinal
+            else -> ViewHolderType.Item.ordinal
+        }
     }
 
-    override fun getItemCount() = locations.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            ViewHolderType.Header.ordinal -> {
+                HeaderViewHolder(
+                    LayoutInflater.from(parent.context)
+                        .inflate(R.layout.cell_location_header, parent, false)
+                )
+            }
+            else -> {
+                LocationViewHolder(
+                    LayoutInflater.from(parent.context)
+                        .inflate(R.layout.cell_location_list, parent, false)
+                )
+            }
+        }
+    }
+
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is HeaderViewHolder -> holder.bind(date)
+            is LocationViewHolder -> holder.bind(locations[position - 1])
+        }
+    }
+
+    override fun getItemCount() = locations.size + 1
+
+    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(date: Date) = with(itemView) {
+            val zonedDateTime = date.toZonedDateTime()
+            val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
+            val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEE, d MMMM"))
+
+            headerGreetingTextView.text = "Good Morning"
+            headerTimeTextView.text = timeString
+            headerDayTextView.text = dayString
+        }
+    }
 
     inner class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(location: Location) = with(itemView) {
