@@ -19,6 +19,7 @@ import com.delacrixmorgan.twilight.android.ui.BottomNavigationBottomSheetFragmen
 import com.delacrixmorgan.twilight.android.ui.about.AboutFragment
 import com.delacrixmorgan.twilight.android.ui.credit.CreditFragment
 import com.delacrixmorgan.twilight.android.ui.form.FormActivity
+import com.delacrixmorgan.twilight.android.ui.shared.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_location_list.*
 import java.util.*
 
@@ -46,6 +47,14 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
 
         adapter.locations = LocationDataController.getLocation().toMutableList()
         recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(
+            GridSpacingItemDecoration(
+                1,
+                22,
+                shouldShowHorizontalMargin = true,
+                shouldShowVerticalMargin = true
+            )
+        )
 
         bottomAppBar.setNavigationOnClickListener {
             showBottomNavigationView()
@@ -101,6 +110,8 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
         super.onResume()
         tickReceiver = TimeTickBroadcastReceiver(this)
         requireContext().registerReceiver(tickReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
+
+        adapter.date = Date()
         adapter.notifyDataSetChanged()
     }
 

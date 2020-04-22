@@ -93,9 +93,10 @@ class LocationRecyclerViewAdapter(
             val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
             val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEE, d MMMM"))
 
-            headerGreetingTextView.text = "Good Morning"
             headerTimeTextView.text = timeString
-            headerDayTextView.text = dayString
+            headerDateTextView.text = dayString
+            headerRegionTextView.text = "Asia/Kuala Lumpur"
+
         }
     }
 
@@ -108,19 +109,23 @@ class LocationRecyclerViewAdapter(
             val textColor = ColorController.getTextColorTint(context, zonedDateTime)
             val backgroundColor = ColorController.getBackgroundColorTint(context, zonedDateTime)
 
-            dayTextView.setTextColor(textColor)
+//            dayTextView.setTextColor(textColor)
             timeTextView.setTextColor(textColor)
+//            locationNameTextView.setTextColor(textColor)
             personNameTextView.setTextColor(textColor)
             containerViewGroup.setBackgroundColor(backgroundColor)
 
             timeTextView.text = timeString
-            dayTextView.text = dayString
+//            dayTextView.text = dayString
 
             if (!location.personName.isNullOrBlank()) {
                 personNameTextView.text = location.personName
             } else {
                 personNameTextView.text = location.name
             }
+
+            locationNameTextView.text = location.name
+//            personNameTextView.isVisible = !location.personName.isNullOrBlank()
 
             setOnClickListener {
                 listener.onLocationSelected(location)

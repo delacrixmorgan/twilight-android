@@ -21,7 +21,7 @@
     <color name="colorGrey">#409E9E9E</color>
     <color name="colorNavigationBar">#202020</color>
 
-    <color name="colorTint1">#1f1f1f</color>
+    <color name="colorTint1">@color/colorBlack</color>
     <color name="colorTint2">#542b22</color>
     <color name="colorTint3">#903522</color>
     <color name="colorTint4">#ff5722</color>
