@@ -91,7 +91,7 @@ class LocationRecyclerViewAdapter(
         fun bind(date: Date) = with(itemView) {
             val zonedDateTime = date.toZonedDateTime()
             val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
-            val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEE, d MMMM"))
+            val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEE, d MMMM yyyy"))
 
             headerTimeTextView.text = timeString
             headerDateTextView.text = dayString
