@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.delacrixmorgan.twilight.android.R
@@ -122,20 +124,32 @@ class LocationRecyclerViewAdapter(
 
             val textColor = ColorController.getTextColorTint(context, zonedDateTime)
             val backgroundColor = ColorController.getBackgroundColorTint(context, zonedDateTime)
+            val colorGrey = ContextCompat.getColor(context, R.color.colorGreyLevel2)
+            val colorWhite = ContextCompat.getColor(context, android.R.color.white)
 
-            timeTextView.setTextColor(ContextCompat.getColor(context, R.color.colorGreyLevel2))
-            personNameTextView.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+            timeTextView.setTextColor(colorWhite)
+            personNameTextView.setTextColor(colorWhite)
+
+            locationNameTextView.setTextColor(textColor)
             containerViewGroup.setBackgroundColor(
                 ContextCompat.getColor(context, R.color.colorBlackLevel2)
             )
 
-            locationNameTextView.setTextColor(textColor)
-            locationNameTextView.background.setColorFilter(
-                backgroundColor,
-                PorterDuff.Mode.SRC_ATOP
-            );
+            locationNameTextView.background.colorFilter =
+                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                    backgroundColor,
+                    BlendModeCompat.SRC_ATOP
+                )
 
             timeTextView.text = timeString
+
+            statusTextView.text = if (zonedDateTime.hour < 7 || zonedDateTime.hour > 19) {
+                "🌙"
+            } else if (zonedDateTime.hour == 7 || zonedDateTime.hour == 17 || zonedDateTime.hour == 18) {
+                "🌤"
+            } else {
+                "☀"
+            }
 
             if (!location.personName.isNullOrBlank()) {
                 personNameTextView.text = location.personName

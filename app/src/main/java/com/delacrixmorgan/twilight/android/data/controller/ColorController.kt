@@ -52,38 +52,41 @@ object ColorController {
     fun getBackgroundColorTint(context: Context, dateTime: ZonedDateTime): Int {
         val hour = dateTime.hour
         return when {
-            hour <= 7 -> {
-                ContextCompat.getColor(context, R.color.colorTint1)
+            hour <= 6 -> {
+                ContextCompat.getColor(context, R.color.colorPrimary)
             }
-            hour == 8 -> {
-                ContextCompat.getColor(context, R.color.colorTint2)
-            }
-            hour == 9 -> {
-                ContextCompat.getColor(context, R.color.colorTint3)
-            }
-            hour == 10 -> {
+            hour == 7 -> {
                 ContextCompat.getColor(context, R.color.colorTint4)
             }
+            hour == 8 -> {
+                ContextCompat.getColor(context, R.color.colorTint6)
+            }
+            hour == 9 -> {
+                ContextCompat.getColor(context, R.color.colorTint6)
+            }
+            hour == 10 -> {
+                ContextCompat.getColor(context, R.color.colorTint6)
+            }
             hour == 11 -> {
-                ContextCompat.getColor(context, R.color.colorTint5)
+                ContextCompat.getColor(context, R.color.colorTint6)
             }
             hour <= 13 -> {
                 ContextCompat.getColor(context, R.color.colorTint6)
             }
             hour <= 15 -> {
-                ContextCompat.getColor(context, R.color.colorTint5)
+                ContextCompat.getColor(context, R.color.colorTint6)
             }
             hour == 16 -> {
-                ContextCompat.getColor(context, R.color.colorTint4)
+                ContextCompat.getColor(context, R.color.colorTint6)
             }
             hour == 17 -> {
-                ContextCompat.getColor(context, R.color.colorTint3)
+                ContextCompat.getColor(context, R.color.colorTint4)
             }
             hour == 18 -> {
-                ContextCompat.getColor(context, R.color.colorTint2)
+                ContextCompat.getColor(context, R.color.colorTint4)
             }
             else -> {
-                ContextCompat.getColor(context, R.color.colorTint1)
+                ContextCompat.getColor(context, R.color.colorPrimary)
             }
         }
     }
@@ -91,14 +94,17 @@ object ColorController {
     fun getTextColorTint(context: Context, dateTime: ZonedDateTime): Int {
         val hour = dateTime.hour
         return when {
-            hour <= 7 -> {
+            hour <= 6 -> {
+                ContextCompat.getColor(context, android.R.color.white)
+            }
+            hour == 7 ->{
                 ContextCompat.getColor(context, android.R.color.white)
             }
             hour == 8 -> {
-                ContextCompat.getColor(context, android.R.color.white)
+                ContextCompat.getColor(context, android.R.color.black)
             }
             hour == 9 -> {
-                ContextCompat.getColor(context, android.R.color.white)
+                ContextCompat.getColor(context, android.R.color.black)
             }
             hour == 10 -> {
                 ContextCompat.getColor(context, android.R.color.black)
@@ -116,7 +122,7 @@ object ColorController {
                 ContextCompat.getColor(context, android.R.color.black)
             }
             hour == 17 -> {
-                ContextCompat.getColor(context, android.R.color.white)
+                ContextCompat.getColor(context, android.R.color.black)
             }
             hour == 18 -> {
                 ContextCompat.getColor(context, android.R.color.white)
