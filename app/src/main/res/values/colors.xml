@@ -16,14 +16,33 @@
     <color name="secondaryTextColor">#000000</color>
 
     <color name="colorBlack">#212121</color>
+    <color name="colorBlackLevel2">#1d1d1d</color>
+
+    <color name="colorGreyLevel2">#9C9B9B</color>
 
     <color name="colorError">#E91E63</color>
     <color name="colorGrey">#409E9E9E</color>
     <color name="colorNavigationBar">#202020</color>
 
+    <color name="colorTintAmberDark">#ff6f00</color>
+    <color name="colorTintAmberMedium">#ffb300</color>
+    <color name="colorTintAmberLight">#ffd54f</color>
+    <color name="colorTintAmberFade">#ffecb3</color>
+
+    <color name="colorTintBlueDark">#0d47a1</color>
+    <color name="colorTintBlueMedium">#1e88e5</color>
+    <color name="colorTintBlueLight">#64b5f6</color>
+    <color name="colorTintBlueFade">#bbdefb</color>
+
+    <color name="colorTintGreyDark">#263238</color>
+    <color name="colorTintGreyMedium">#546e7a</color>
+    <color name="colorTintGreyLight">#90a4ae</color>
+    <color name="colorTintGreyFade">#cfd8dc</color>
+
     <color name="colorDarkBlue">#0c5894</color>
 
-    <color name="colorTint1">@color/colorBlack</color>
+
+    <color name="colorTint1">#263238</color>
     <color name="colorTint2">#542b22</color>
     <color name="colorTint3">#903522</color>
     <color name="colorTint4">#ff5722</color>

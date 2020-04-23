@@ -30,6 +30,7 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
         fun create() = LocationListFragment()
     }
 
+
     private var tickReceiver: TimeTickBroadcastReceiver? = null
 
     private val adapter = LocationRecyclerViewAdapter(this)
@@ -127,5 +128,9 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
             BottomNavigationBottomSheetFragment.MenuItems.Credits -> launchCreditFragment()
             BottomNavigationBottomSheetFragment.MenuItems.About -> launchAboutFragment()
         }
+    }
+
+    override fun onDateTimeColorUpdated(color: Int) {
+        parentViewGroup.setBackgroundColor(color)
     }
 }

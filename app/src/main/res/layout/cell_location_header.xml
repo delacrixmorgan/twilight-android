@@ -6,27 +6,30 @@
     android:layout_height="wrap_content">
 
     <FrameLayout
+        android:id="@+id/headerContainerViewGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/backgroundLightImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/bg_header_light" />
 
         <ImageView
+            android:id="@+id/backgroundMediumImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/bg_header_medium" />
 
         <ImageView
+            android:id="@+id/backgroundDarkImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"

@@ -1,8 +1,10 @@
 package com.delacrixmorgan.twilight.android.ui.location
 
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.delacrixmorgan.twilight.android.R
@@ -19,6 +21,7 @@ class LocationRecyclerViewAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     interface Listener {
         fun onLocationSelected(location: Location)
+        fun onDateTimeColorUpdated(color: Int)
     }
 
     var date = Date()
@@ -95,8 +98,20 @@ class LocationRecyclerViewAdapter(
 
             headerTimeTextView.text = timeString
             headerDateTextView.text = dayString
-            headerRegionTextView.text = "Asia/Kuala Lumpur"
+            headerRegionTextView.text = zonedDateTime.zone.toString().replace("_", " ")
 
+            ColorController.getColorTintState(context, zonedDateTime).apply {
+                backgroundDarkImageView.setColorFilter(colorDark, PorterDuff.Mode.SRC_ATOP)
+                backgroundMediumImageView.setColorFilter(colorMedium, PorterDuff.Mode.SRC_ATOP)
+                backgroundLightImageView.setColorFilter(colorLight, PorterDuff.Mode.SRC_ATOP)
+
+                headerContainerViewGroup.setBackgroundColor(colorFade)
+                headerTimeTextView.setTextColor(colorHint)
+                headerDateTextView.setTextColor(colorHint)
+                headerRegionTextView.setTextColor(colorHint)
+
+                listener.onDateTimeColorUpdated(colorDark)
+            }
         }
     }
 
@@ -104,19 +119,23 @@ class LocationRecyclerViewAdapter(
         fun bind(location: Location) = with(itemView) {
             val zonedDateTime = location.getCurrentZonedDateTime(date)
             val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
-            val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEE, d MMMM"))
 
             val textColor = ColorController.getTextColorTint(context, zonedDateTime)
             val backgroundColor = ColorController.getBackgroundColorTint(context, zonedDateTime)
 
-//            dayTextView.setTextColor(textColor)
-            timeTextView.setTextColor(textColor)
-//            locationNameTextView.setTextColor(textColor)
-            personNameTextView.setTextColor(textColor)
-            containerViewGroup.setBackgroundColor(backgroundColor)
+            timeTextView.setTextColor(ContextCompat.getColor(context, R.color.colorGreyLevel2))
+            personNameTextView.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+            containerViewGroup.setBackgroundColor(
+                ContextCompat.getColor(context, R.color.colorBlackLevel2)
+            )
+
+            locationNameTextView.setTextColor(textColor)
+            locationNameTextView.background.setColorFilter(
+                backgroundColor,
+                PorterDuff.Mode.SRC_ATOP
+            );
 
             timeTextView.text = timeString
-//            dayTextView.text = dayString
 
             if (!location.personName.isNullOrBlank()) {
                 personNameTextView.text = location.personName
@@ -125,7 +144,6 @@ class LocationRecyclerViewAdapter(
             }
 
             locationNameTextView.text = location.name
-//            personNameTextView.isVisible = !location.personName.isNullOrBlank()
 
             setOnClickListener {
                 listener.onLocationSelected(location)

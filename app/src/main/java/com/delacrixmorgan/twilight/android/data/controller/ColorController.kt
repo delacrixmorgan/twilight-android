@@ -3,9 +3,52 @@ package com.delacrixmorgan.twilight.android.data.controller
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.delacrixmorgan.twilight.android.R
+import com.delacrixmorgan.twilight.android.data.model.ColorTintState
 import org.threeten.bp.ZonedDateTime
 
 object ColorController {
+
+    fun getColorTintState(context: Context, dateTime: ZonedDateTime): ColorTintState {
+        return when (0) {
+            in 7..8 -> {
+                ColorTintState(
+                    colorDark = ContextCompat.getColor(context, R.color.colorTintAmberDark),
+                    colorMedium = ContextCompat.getColor(context, R.color.colorTintAmberMedium),
+                    colorLight = ContextCompat.getColor(context, R.color.colorTintAmberLight),
+                    colorFade = ContextCompat.getColor(context, R.color.colorTintAmberFade),
+                    colorHint = ContextCompat.getColor(context, R.color.colorBlack)
+                )
+            }
+            in 9..17 -> {
+                ColorTintState(
+                    colorDark = ContextCompat.getColor(context, R.color.colorTintBlueDark),
+                    colorMedium = ContextCompat.getColor(context, R.color.colorTintBlueMedium),
+                    colorLight = ContextCompat.getColor(context, R.color.colorTintBlueLight),
+                    colorFade = ContextCompat.getColor(context, R.color.colorTintBlueFade),
+                    colorHint = ContextCompat.getColor(context, android.R.color.white)
+                )
+            }
+            in 18..19 -> {
+                ColorTintState(
+                    colorDark = ContextCompat.getColor(context, R.color.colorTintAmberDark),
+                    colorMedium = ContextCompat.getColor(context, R.color.colorTintAmberMedium),
+                    colorLight = ContextCompat.getColor(context, R.color.colorTintAmberLight),
+                    colorFade = ContextCompat.getColor(context, R.color.colorTintAmberFade),
+                    colorHint = ContextCompat.getColor(context, R.color.colorBlack)
+                )
+            }
+            else -> {
+                ColorTintState(
+                    colorDark = ContextCompat.getColor(context, R.color.colorTintGreyDark),
+                    colorMedium = ContextCompat.getColor(context, R.color.colorTintGreyMedium),
+                    colorLight = ContextCompat.getColor(context, R.color.colorTintGreyLight),
+                    colorFade = ContextCompat.getColor(context, R.color.colorTintGreyFade),
+                    colorHint = ContextCompat.getColor(context, android.R.color.black)
+                )
+            }
+        }
+    }
+
     fun getBackgroundColorTint(context: Context, dateTime: ZonedDateTime): Int {
         val hour = dateTime.hour
         return when {
