@@ -1,17 +1,16 @@
 package com.delacrixmorgan.twilight.android.ui.location
 
-import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.delacrixmorgan.twilight.android.R
-import com.delacrixmorgan.twilight.android.data.controller.ColorController
+import com.delacrixmorgan.twilight.android.data.controller.DateTimeController
 import com.delacrixmorgan.twilight.android.data.model.Location
+import com.delacrixmorgan.twilight.android.getZoneCity
 import com.delacrixmorgan.twilight.android.toZonedDateTime
 import kotlinx.android.synthetic.main.cell_location_header.view.*
 import kotlinx.android.synthetic.main.cell_location_list.view.*
@@ -23,7 +22,6 @@ class LocationRecyclerViewAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     interface Listener {
         fun onLocationSelected(location: Location)
-        fun onDateTimeColorUpdated(color: Int)
     }
 
     var date = Date()
@@ -82,7 +80,6 @@ class LocationRecyclerViewAdapter(
         }
     }
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is HeaderViewHolder -> holder.bind(date)
@@ -95,66 +92,51 @@ class LocationRecyclerViewAdapter(
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(date: Date) = with(itemView) {
             val zonedDateTime = date.toZonedDateTime()
-            val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
-            val dayString = zonedDateTime.format(DateTimeFormatter.ofPattern("EEE, d MMMM yyyy"))
+            val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm"))
+            val periodString = zonedDateTime.format(DateTimeFormatter.ofPattern("a"))
+            val greetingString = DateTimeController.getGreetingText(
+                context, zonedDateTime, "Aerith"
+            )
+
+            val textColor = DateTimeController.getTextColorTint(context, zonedDateTime)
+            val backgroundColor = DateTimeController.getBackgroundColorTint(context, zonedDateTime)
+            val backgroundBlendColor = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                backgroundColor,
+                BlendModeCompat.SRC_ATOP
+            )
 
             headerTimeTextView.text = timeString
-            headerDateTextView.text = dayString
-            headerRegionTextView.text = zonedDateTime.zone.toString().replace("_", " ")
+            headerPeriodTextView.text = periodString
+            headerGreetingsTextView.text = greetingString
+            headerLocationTextView.text = zonedDateTime.getZoneCity()
 
-            ColorController.getColorTintState(context, zonedDateTime).apply {
-                backgroundDarkImageView.setColorFilter(colorDark, PorterDuff.Mode.SRC_ATOP)
-                backgroundMediumImageView.setColorFilter(colorMedium, PorterDuff.Mode.SRC_ATOP)
-                backgroundLightImageView.setColorFilter(colorLight, PorterDuff.Mode.SRC_ATOP)
-
-                headerContainerViewGroup.setBackgroundColor(colorFade)
-                headerTimeTextView.setTextColor(colorHint)
-                headerDateTextView.setTextColor(colorHint)
-                headerRegionTextView.setTextColor(colorHint)
-
-                listener.onDateTimeColorUpdated(colorDark)
-            }
+            headerLocationTextView.setTextColor(textColor)
+            headerLocationTextView.background.colorFilter = backgroundBlendColor
         }
     }
 
     inner class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(location: Location) = with(itemView) {
             val zonedDateTime = location.getCurrentZonedDateTime(date)
-            val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm a"))
-
-            val textColor = ColorController.getTextColorTint(context, zonedDateTime)
-            val backgroundColor = ColorController.getBackgroundColorTint(context, zonedDateTime)
-            val colorGrey = ContextCompat.getColor(context, R.color.colorGreyLevel2)
-            val colorWhite = ContextCompat.getColor(context, android.R.color.white)
-
-            timeTextView.setTextColor(colorWhite)
-            personNameTextView.setTextColor(colorWhite)
-
-            locationNameTextView.setTextColor(textColor)
-            containerViewGroup.setBackgroundColor(
-                ContextCompat.getColor(context, R.color.colorBlackLevel2)
+            val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm"))
+            val periodString = zonedDateTime.format(DateTimeFormatter.ofPattern("a"))
+            val textColor = DateTimeController.getTextColorTint(context, zonedDateTime)
+            val backgroundColor = DateTimeController.getBackgroundColorTint(context, zonedDateTime)
+            val backgroundBlendColor = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                backgroundColor,
+                BlendModeCompat.SRC_ATOP
             )
 
-            locationNameTextView.background.colorFilter =
-                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                    backgroundColor,
-                    BlendModeCompat.SRC_ATOP
-                )
+            locationNameTextView.setTextColor(textColor)
+            locationNameTextView.background.colorFilter = backgroundBlendColor
 
             timeTextView.text = timeString
-
-            statusTextView.text = if (zonedDateTime.hour < 7 || zonedDateTime.hour > 19) {
-                "🌙"
-            } else if (zonedDateTime.hour == 7 || zonedDateTime.hour == 17 || zonedDateTime.hour == 18) {
-                "🌤"
+            periodTextView.text = periodString
+            statusTextView.text = DateTimeController.getStatus(zonedDateTime)
+            personNameTextView.text = if (!location.personName.isNullOrBlank()) {
+                location.personName
             } else {
-                "☀"
-            }
-
-            if (!location.personName.isNullOrBlank()) {
-                personNameTextView.text = location.personName
-            } else {
-                personNameTextView.text = location.name
+                location.name
             }
 
             locationNameTextView.text = location.name

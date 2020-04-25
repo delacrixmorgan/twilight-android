@@ -13,6 +13,7 @@ import com.delacrixmorgan.twilight.android.R
 import com.delacrixmorgan.twilight.android.data.controller.LocationDataController
 import com.delacrixmorgan.twilight.android.data.model.FormType
 import com.delacrixmorgan.twilight.android.data.model.Location
+import com.delacrixmorgan.twilight.android.performHapticContextClick
 import com.delacrixmorgan.twilight.android.service.TimeTickBroadcastReceiver
 import com.delacrixmorgan.twilight.android.service.TimeTickListener
 import com.delacrixmorgan.twilight.android.ui.BottomNavigationBottomSheetFragment
@@ -115,6 +116,7 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
     }
 
     override fun onLocationSelected(location: Location) {
+        performHapticContextClick()
         launchFormActivity(formType = FormType.Edit, location = location)
     }
 
@@ -128,9 +130,5 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
             BottomNavigationBottomSheetFragment.MenuItems.Credits -> launchCreditFragment()
             BottomNavigationBottomSheetFragment.MenuItems.About -> launchAboutFragment()
         }
-    }
-
-    override fun onDateTimeColorUpdated(color: Int) {
-        parentViewGroup.setBackgroundColor(color)
     }
 }

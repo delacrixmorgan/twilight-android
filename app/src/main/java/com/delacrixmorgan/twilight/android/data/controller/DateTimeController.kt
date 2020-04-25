@@ -3,48 +3,33 @@ package com.delacrixmorgan.twilight.android.data.controller
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.delacrixmorgan.twilight.android.R
-import com.delacrixmorgan.twilight.android.data.model.ColorTintState
 import org.threeten.bp.ZonedDateTime
 
-object ColorController {
+object DateTimeController {
 
-    fun getColorTintState(context: Context, dateTime: ZonedDateTime): ColorTintState {
-        return when (0) {
-            in 7..8 -> {
-                ColorTintState(
-                    colorDark = ContextCompat.getColor(context, R.color.colorTintAmberDark),
-                    colorMedium = ContextCompat.getColor(context, R.color.colorTintAmberMedium),
-                    colorLight = ContextCompat.getColor(context, R.color.colorTintAmberLight),
-                    colorFade = ContextCompat.getColor(context, R.color.colorTintAmberFade),
-                    colorHint = ContextCompat.getColor(context, R.color.colorBlack)
-                )
+    fun getStatus(dateTime: ZonedDateTime): String {
+        return if (dateTime.hour < 7 || dateTime.hour > 19) {
+            "🌙"
+        } else if (dateTime.hour == 7 || dateTime.hour == 17 || dateTime.hour == 18) {
+            "🌤"
+        } else {
+            "☀"
+        }
+    }
+
+    fun getGreetingText(context: Context, dateTime: ZonedDateTime, name: String): String {
+        return when (dateTime.hour) {
+            in 0..11 -> {
+                "Good Morning, $name"
             }
-            in 9..17 -> {
-                ColorTintState(
-                    colorDark = ContextCompat.getColor(context, R.color.colorTintBlueDark),
-                    colorMedium = ContextCompat.getColor(context, R.color.colorTintBlueMedium),
-                    colorLight = ContextCompat.getColor(context, R.color.colorTintBlueLight),
-                    colorFade = ContextCompat.getColor(context, R.color.colorTintBlueFade),
-                    colorHint = ContextCompat.getColor(context, android.R.color.white)
-                )
+            in 12..17 -> {
+                "Good Afternoon, $name"
             }
-            in 18..19 -> {
-                ColorTintState(
-                    colorDark = ContextCompat.getColor(context, R.color.colorTintAmberDark),
-                    colorMedium = ContextCompat.getColor(context, R.color.colorTintAmberMedium),
-                    colorLight = ContextCompat.getColor(context, R.color.colorTintAmberLight),
-                    colorFade = ContextCompat.getColor(context, R.color.colorTintAmberFade),
-                    colorHint = ContextCompat.getColor(context, R.color.colorBlack)
-                )
+            in 18..21 -> {
+                "Good Evening, $name"
             }
             else -> {
-                ColorTintState(
-                    colorDark = ContextCompat.getColor(context, R.color.colorTintGreyDark),
-                    colorMedium = ContextCompat.getColor(context, R.color.colorTintGreyMedium),
-                    colorLight = ContextCompat.getColor(context, R.color.colorTintGreyLight),
-                    colorFade = ContextCompat.getColor(context, R.color.colorTintGreyFade),
-                    colorHint = ContextCompat.getColor(context, android.R.color.black)
-                )
+                "Good Night, $name"
             }
         }
     }
@@ -53,7 +38,7 @@ object ColorController {
         val hour = dateTime.hour
         return when {
             hour <= 6 -> {
-                ContextCompat.getColor(context, R.color.colorPrimary)
+                ContextCompat.getColor(context, R.color.colorTint1)
             }
             hour == 7 -> {
                 ContextCompat.getColor(context, R.color.colorTint4)
@@ -86,7 +71,7 @@ object ColorController {
                 ContextCompat.getColor(context, R.color.colorTint4)
             }
             else -> {
-                ContextCompat.getColor(context, R.color.colorPrimary)
+                ContextCompat.getColor(context, R.color.colorTint1)
             }
         }
     }
@@ -97,7 +82,7 @@ object ColorController {
             hour <= 6 -> {
                 ContextCompat.getColor(context, android.R.color.white)
             }
-            hour == 7 ->{
+            hour == 7 -> {
                 ContextCompat.getColor(context, android.R.color.white)
             }
             hour == 8 -> {
@@ -122,7 +107,7 @@ object ColorController {
                 ContextCompat.getColor(context, android.R.color.black)
             }
             hour == 17 -> {
-                ContextCompat.getColor(context, android.R.color.black)
+                ContextCompat.getColor(context, android.R.color.white)
             }
             hour == 18 -> {
                 ContextCompat.getColor(context, android.R.color.white)

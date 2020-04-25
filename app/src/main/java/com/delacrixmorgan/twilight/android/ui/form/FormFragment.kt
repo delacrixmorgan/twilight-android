@@ -63,7 +63,7 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
             FormType.Create -> {
                 deleteButton.isVisible = false
                 navigationBar.actionButton.text = getString(R.string.done)
-                navigationBar.titleTextView.text = "Create a User"
+                navigationBar.titleTextView.text = "Create a Location"
                 location = Location()
             }
             FormType.Edit -> {
@@ -71,7 +71,7 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
                     requireNotNull(arguments?.getString(Keys.Form.LocationUuid.name))
                 )
                 deleteButton.isVisible = true
-                navigationBar.titleTextView.text = "Edit User"
+                navigationBar.titleTextView.text = "Edit Location"
                 navigationBar.actionButton.text = getString(R.string.save)
 
                 updateViews()
