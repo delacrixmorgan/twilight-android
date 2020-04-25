@@ -47,7 +47,7 @@ class ZoneListFragment : Fragment(), ZoneRecyclerViewAdapter.Listener {
         }
 
         searchTextView.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideKeyboard()
             }
             false

@@ -28,6 +28,7 @@
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="16dp"
             android:hint="@string/search"
+            android:imeOptions="actionSearch"
             android:importantForAutofill="no"
             android:inputType="textCapWords"
             android:maxLines="1"

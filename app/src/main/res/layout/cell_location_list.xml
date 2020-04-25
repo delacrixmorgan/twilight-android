@@ -14,7 +14,7 @@
         android:id="@+id/containerViewGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlackLevel2"
+        android:background="@color/colorBlack4DP"
         android:padding="22dp">
 
         <TextView
