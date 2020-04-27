@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import androidx.core.widget.doAfterTextChanged
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.delacrixmorgan.twilight.android.R
 import com.delacrixmorgan.twilight.android.data.controller.ZoneDataController
@@ -40,18 +39,20 @@ class ZoneListFragment : Fragment(), ZoneRecyclerViewAdapter.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchTextView.doAfterTextChanged {
-            adapter.zones = ZoneDataController.getZone(
-                searchQuery = it?.toString()
-            ).toMutableList()
-        }
-
-        searchTextView.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
                 hideKeyboard()
+                return true
             }
-            false
-        }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.zones = ZoneDataController.getZone(
+                    searchQuery = newText
+                ).toMutableList()
+                recyclerView.scrollToPosition(0)
+                return true
+            }
+        })
 
         adapter.zones = ZoneDataController.getZone().toMutableList()
         recyclerView.adapter = adapter

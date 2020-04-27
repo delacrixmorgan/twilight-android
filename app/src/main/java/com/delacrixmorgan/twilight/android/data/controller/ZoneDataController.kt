@@ -52,6 +52,6 @@ object ZoneDataController {
             }.toMutableList()
         }
 
-        return filteredList.distinctBy { it.uuid }
+        return filteredList.sortedBy { it.name }
     }
 }

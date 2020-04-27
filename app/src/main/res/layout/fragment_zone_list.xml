@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/colorBlack4DP">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/searchCardView"
@@ -19,23 +19,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/searchTextView"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="16dp"
-            android:hint="@string/search"
-            android:imeOptions="actionSearch"
-            android:importantForAutofill="no"
+            android:layout_height="wrap_content"
             android:inputType="textCapWords"
-            android:maxLines="1"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textAppearance="@style/Subhead"
-            tools:ignore="LabelFor" />
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="Search" />
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -86,7 +86,7 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
     private fun launchCreditFragment() {
         val fragment = CreditFragment.create()
         activity?.supportFragmentManager?.commit {
-            add(android.R.id.content, fragment, fragment::class.simpleName)
+            replace(android.R.id.content, fragment, fragment::class.simpleName)
             addToBackStack(fragment::class.simpleName)
         }
     }
@@ -94,7 +94,7 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
     private fun launchAboutFragment() {
         val fragment = AboutFragment.create()
         activity?.supportFragmentManager?.commit {
-            add(android.R.id.content, fragment, fragment::class.simpleName)
+            replace(android.R.id.content, fragment, fragment::class.simpleName)
             addToBackStack(fragment::class.simpleName)
         }
     }
