@@ -7,4 +7,20 @@
     <string name="optional">Optional</string>
 
     <string name="msg_support">Didn\'t mean to pull you out from your app.\n\nTwilight is designed, coded and put together by a single person. Making every single rating a big boost for me.\n\nThe well-being of this timezone app rest entirely on your reviews. Have a great one mate!</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="good_afternoon">Good Afternoon</string>
+    <string name="good_evening">Good Evening</string>
+    <string name="good_night">Good Night</string>
+    <string name="pick_a_time_zone">Pick a time zone</string>
+    <string name="msg_pick_time_zone">Life begins here.</string>
+    <string name="add_a_place">Add a place</string>
+    <string name="msg_add_a_place">Didn\'t got the name of the place right?\nJust change it here.</string>
+    <string name="hint_add_a_place">i.e. Amsterdam, Osaka</string>
+    <string name="who_lives_here">Who Lives Here</string>
+    <string name="msg_who_lives_here">It can be a person\'s name, your remote team office in a different time zone or anything at all.</string>
+    <string name="hint_who_lives_here">i.e. Aerith, Highwind Office (Optional)</string>
+    <string name="hey_there">Hey There</string>
+    <string name="be_awesome">Be Awesome</string>
+    <string name="hearts_and_kisses">Hearts and Kisses</string>
+    <string name="about">About</string>
 </resources>

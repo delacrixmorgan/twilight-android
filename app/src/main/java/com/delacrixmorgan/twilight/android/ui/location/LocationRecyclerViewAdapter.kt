@@ -95,7 +95,7 @@ class LocationRecyclerViewAdapter(
             val timeString = zonedDateTime.format(DateTimeFormatter.ofPattern("h:mm"))
             val periodString = zonedDateTime.format(DateTimeFormatter.ofPattern("a"))
             val greetingString = DateTimeController.getGreetingText(
-                context, zonedDateTime, "Aerith"
+                context, zonedDateTime
             )
 
             val textColor = DateTimeController.getTextColorTint(context, zonedDateTime)
@@ -133,8 +133,8 @@ class LocationRecyclerViewAdapter(
             timeTextView.text = timeString
             periodTextView.text = periodString
             statusTextView.text = DateTimeController.getStatus(zonedDateTime)
-            personNameTextView.text = if (!location.personName.isNullOrBlank()) {
-                location.personName
+            descriptionTextView.text = if (!location.description.isNullOrBlank()) {
+                location.description
             } else {
                 location.name
             }

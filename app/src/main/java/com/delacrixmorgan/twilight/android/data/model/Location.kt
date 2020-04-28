@@ -14,17 +14,11 @@ data class Location(
     @PrimaryKey val uuid: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "timeZoneId") var timeZoneId: String? = null,
     @ColumnInfo(name = "name") var name: String? = null,
-    @ColumnInfo(name = "personName") var personName: String? = null
+    @ColumnInfo(name = "description") var description: String? = null
 ) {
     val zone: Zone?
         get() {
             return ZoneDataController.getZoneById(timeZoneId)
-        }
-
-    val zonedDateTime: ZonedDateTime
-        get() {
-            val zoneId = ZoneId.of(timeZoneId)
-            return ZonedDateTime.ofInstant(Date().toZonedDateTime().toInstant(), zoneId)
         }
 
     fun getCurrentZonedDateTime(date: Date): ZonedDateTime {

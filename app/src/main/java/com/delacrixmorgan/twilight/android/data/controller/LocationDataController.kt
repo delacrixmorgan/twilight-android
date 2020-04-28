@@ -10,7 +10,6 @@ object LocationDataController {
     }
 
     fun getLocation(): List<Location> {
-        var filteredList = locations
-        return filteredList
+        return locations
     }
 }

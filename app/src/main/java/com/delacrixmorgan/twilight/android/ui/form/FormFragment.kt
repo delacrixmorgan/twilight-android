@@ -86,8 +86,8 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
             location?.name = it.toString()
         }
 
-        personNameEditText.doAfterTextChanged {
-            location?.personName = it.toString()
+        descriptionEditText.doAfterTextChanged {
+            location?.description = it.toString()
         }
 
         searchTextView.setOnClickListener {
@@ -152,7 +152,7 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
 
     private fun updateViews() {
         navigationBar.actionButton.isEnabled = location?.zone != null
-        personNameEditText.setText(location?.personName)
+        descriptionEditText.setText(location?.description)
         locationNameEditText.setText(location?.zone?.name)
 
         searchTextView.text = location?.zone?.regionZoneName

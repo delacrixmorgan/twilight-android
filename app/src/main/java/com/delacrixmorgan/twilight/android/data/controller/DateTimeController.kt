@@ -17,19 +17,19 @@ object DateTimeController {
         }
     }
 
-    fun getGreetingText(context: Context, dateTime: ZonedDateTime, name: String): String {
+    fun getGreetingText(context: Context, dateTime: ZonedDateTime): String {
         return when (dateTime.hour) {
             in 0..11 -> {
-                "Good Morning, $name"
+                context.getString(R.string.good_morning)
             }
             in 12..17 -> {
-                "Good Afternoon, $name"
+                context.getString(R.string.good_afternoon)
             }
             in 18..21 -> {
-                "Good Evening, $name"
+                context.getString(R.string.good_evening)
             }
             else -> {
-                "Good Night, $name"
+                context.getString(R.string.good_night)
             }
         }
     }
@@ -37,16 +37,16 @@ object DateTimeController {
     fun getBackgroundColorTint(context: Context, dateTime: ZonedDateTime): Int {
         return when (dateTime.hour) {
             in 6..7 -> {
-                ContextCompat.getColor(context, R.color.colorTint4)
+                ContextCompat.getColor(context, R.color.colorTintDawn)
             }
             in 8..16 -> {
-                ContextCompat.getColor(context, R.color.colorTint6)
+                ContextCompat.getColor(context, R.color.colorTintDay)
             }
             in 17..18 -> {
-                ContextCompat.getColor(context, R.color.colorTint4)
+                ContextCompat.getColor(context, R.color.colorTintDawn)
             }
             else -> {
-                ContextCompat.getColor(context, R.color.colorTint1)
+                ContextCompat.getColor(context, R.color.colorTintNight)
             }
         }
     }

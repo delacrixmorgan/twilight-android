@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="Pick a time zone"
+            android:text="@string/pick_a_time_zone"
             android:textAlignment="center"
             android:textAppearance="@style/Body"
             android:textStyle="bold" />
@@ -36,7 +36,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:padding="8dp"
-            android:text="Life begins here."
+            android:text="@string/msg_pick_time_zone"
             android:textAlignment="center"
             android:textAppearance="@style/Caption1"
             android:textStyle="bold" />
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="Add a place"
+            android:text="@string/add_a_place"
             android:textAlignment="center"
             android:textAppearance="@style/Body"
             android:textStyle="bold" />
@@ -91,7 +91,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:padding="8dp"
-            android:text="Didn't got the name of the place right?\nJust change it here."
+            android:text="@string/msg_add_a_place"
             android:textAlignment="center"
             android:textAppearance="@style/Caption1"
             android:textStyle="bold" />
@@ -112,7 +112,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:drawablePadding="16dp"
-                android:hint="i.e. Amsterdam, Osaka"
+                android:hint="@string/hint_add_a_place"
                 android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:maxLines="1"
@@ -126,7 +126,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="Who Lives Here"
+            android:text="@string/who_lives_here"
             android:textAlignment="center"
             android:textAppearance="@style/Body"
             android:textStyle="bold" />
@@ -137,13 +137,13 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:padding="8dp"
-            android:text="It can be a person's name, your remote team office in a different time zone or anything at all."
+            android:text="@string/msg_who_lives_here"
             android:textAlignment="center"
             android:textAppearance="@style/Caption1"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/personNameCardView"
+            android:id="@+id/descriptionCardView"
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:layout_marginStart="20dp"
@@ -152,13 +152,13 @@
             app:cardElevation="1dp">
 
             <EditText
-                android:id="@+id/personNameEditText"
+                android:id="@+id/descriptionEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
                 android:drawablePadding="16dp"
-                android:hint="i.e. Aerith, Highwind Office (Optional)"
+                android:hint="@string/hint_who_lives_here"
                 android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:maxLines="1"

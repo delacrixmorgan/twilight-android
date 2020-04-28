@@ -27,7 +27,7 @@
     <color name="colorBlack16DP">#363636</color>
     <color name="colorBlack24DP">#383838</color>
 
-    <color name="colorTint1">@color/colorBlack24DP</color>
-    <color name="colorTint4">@color/colorAccent</color>
-    <color name="colorTint6">#1976d2</color>
+    <color name="colorTintNight">@color/colorBlack24DP</color>
+    <color name="colorTintDawn">@color/colorAccent</color>
+    <color name="colorTintDay">#1976d2</color>
 </resources>

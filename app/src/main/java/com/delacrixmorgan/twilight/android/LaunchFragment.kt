@@ -65,49 +65,49 @@ class LaunchFragment : Fragment() {
             listOf(
                 Location(
                     name = "Columbus",
-                    personName = "Yang",
+                    description = "Yang",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "Columbus")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "New Jersey",
-                    personName = "Ze-Xin, Ze-Wen",
+                    description = "Ze-Xin, Ze-Wen",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "New Jersey")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "San Francisco",
-                    personName = "Michael",
+                    description = "Michael",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "San Francisco")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "London",
-                    personName = "Ian",
+                    description = "Ian",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "London")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "Perth",
-                    personName = "Teck Hun",
+                    description = "Teck Hun",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "Perth")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "Tasmania",
-                    personName = "Grace",
+                    description = "Grace",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "Tasmania")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "Melbourne",
-                    personName = "Maggie",
+                    description = "Maggie",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "Melbourne")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "Auckland",
-                    personName = "Thomas",
+                    description = "Thomas",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "Auckland")
                         .first().timeZoneId
                 )

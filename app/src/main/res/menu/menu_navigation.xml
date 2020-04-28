@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/creditsMenu"
-        android:title="Credits"
+        android:title="@string/hearts_and_kisses"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/aboutMenu"
-        android:title="About"
+        android:title="@string/about"
         app:showAsAction="never" />
 </menu>

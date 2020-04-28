@@ -28,6 +28,13 @@ fun Fragment.launchPlayStore(packageName: String) {
     startActivity(intent)
 }
 
+fun Fragment.launchWebsite(url: String) {
+    val intent = Intent(Intent.ACTION_VIEW)
+
+    intent.data = Uri.parse(url)
+    startActivity(intent)
+}
+
 fun Date.toZonedDateTime(): ZonedDateTime {
     val calendar = Calendar.getInstance().apply { time = this@toZonedDateTime }
     return DateTimeUtils.toZonedDateTime(calendar)
