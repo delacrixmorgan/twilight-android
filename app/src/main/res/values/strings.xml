@@ -5,4 +5,6 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="optional">Optional</string>
+
+    <string name="msg_support">Didn\'t mean to pull you out from your app.\n\nTwilight is designed, coded and put together by a single person. Making every single rating a big boost for me.\n\nThe well-being of this timezone app rest entirely on your reviews. Have a great one mate!</string>
 </resources>

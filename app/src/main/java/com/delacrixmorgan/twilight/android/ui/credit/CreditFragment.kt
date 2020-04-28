@@ -23,5 +23,6 @@ class CreditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //<a href="https://iconscout.com/illustrations/man-enjoying-vacation" target="_blank">Man enjoying vacation Illustration</a> by <a href="https://iconscout.com/contributors/delesign" target="_blank">Delesign Graphics</a>
     }
 }

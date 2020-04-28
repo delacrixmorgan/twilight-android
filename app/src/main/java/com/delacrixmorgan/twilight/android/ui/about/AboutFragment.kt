@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.delacrixmorgan.twilight.android.R
+import com.delacrixmorgan.twilight.android.launchPlayStore
+import kotlinx.android.synthetic.main.fragment_about.*
 
 class AboutFragment : Fragment() {
 
@@ -22,6 +24,13 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
+        supportButton.setOnClickListener {
+            launchPlayStore(view.context.packageName)
+        }
+
+        backButton.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
+        }
     }
 }

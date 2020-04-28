@@ -1,6 +1,8 @@
 package com.delacrixmorgan.twilight.android
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.view.HapticFeedbackConstants
 import android.view.View
@@ -16,6 +18,14 @@ import java.util.*
 fun Fragment.hideKeyboard() {
     val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(view?.windowToken, 0)
+}
+
+fun Fragment.launchPlayStore(packageName: String) {
+    val url = "https://play.google.com/store/apps/details?id=$packageName"
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    startActivity(intent)
 }
 
 fun Date.toZonedDateTime(): ZonedDateTime {
