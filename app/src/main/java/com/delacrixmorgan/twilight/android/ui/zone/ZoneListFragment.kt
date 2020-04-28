@@ -54,6 +54,10 @@ class ZoneListFragment : Fragment(), ZoneRecyclerViewAdapter.Listener {
             }
         })
 
+        backButton.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
+        }
+
         adapter.zones = ZoneDataController.getZone().toMutableList()
         recyclerView.adapter = adapter
     }

@@ -90,7 +90,7 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
             location?.personName = it.toString()
         }
 
-        searchCardView.setOnClickListener {
+        searchTextView.setOnClickListener {
             launchZoneListFragment()
         }
 
@@ -154,6 +154,7 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
         navigationBar.actionButton.isEnabled = location?.zone != null
         personNameEditText.setText(location?.personName)
         locationNameEditText.setText(location?.zone?.name)
+
         searchTextView.text = location?.zone?.regionZoneName
         locationNameEditText.setSelection(location?.zone?.name?.length ?: 0)
     }
