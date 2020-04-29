@@ -22,7 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
-            android:fontFamily="sans-serif-light"
             android:maxLines="1"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
@@ -94,7 +93,6 @@
                 android:textAppearance="@style/Caption2"
                 android:textColor="@android:color/white"
                 tools:text="PM" />
-
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

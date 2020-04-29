@@ -41,6 +41,32 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:padding="2dp"
+                android:text="The League Of, League Spartan"
+                android:textAppearance="@style/Subhead"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Font Library"
+                android:textAppearance="@style/Caption1"
+                android:textColor="@color/colorAccent" />
+
+            <ImageView
+                android:id="@+id/spartanImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_github" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:padding="2dp"
                 android:text="ThreeTen Android Backport, Jake Wharton"
                 android:textAppearance="@style/Subhead"
                 android:textStyle="bold" />
@@ -50,9 +76,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="ThreeTenABP"
-                android:textAppearance="@style/Callout"
+                android:textAppearance="@style/Caption1"
                 android:textColor="@color/colorAccent"
-                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -78,9 +103,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Illustration"
-                android:textAppearance="@style/Callout"
+                android:textAppearance="@style/Caption1"
                 android:textColor="@color/colorAccent"
-                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <ImageView

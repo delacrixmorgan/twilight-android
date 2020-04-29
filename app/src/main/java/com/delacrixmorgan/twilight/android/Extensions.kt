@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.view.HapticFeedbackConstants
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import org.threeten.bp.DateTimeUtils
@@ -85,6 +84,12 @@ fun String.addExceptions(list: MutableList<String>) {
         }
         "New York" -> {
             listOf("New Jersey")
+        }
+        "Bucharest" -> {
+            listOf("Romania", "Transylvania")
+        }
+        "Tokyo" -> {
+            listOf("Japan", "Kyoto", "Osaka", "Edo", "Kobe")
         }
         else -> listOf()
     }

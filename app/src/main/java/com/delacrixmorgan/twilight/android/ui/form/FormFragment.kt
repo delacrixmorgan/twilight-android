@@ -19,6 +19,7 @@ import com.delacrixmorgan.twilight.android.data.model.FormType
 import com.delacrixmorgan.twilight.android.data.model.Keys
 import com.delacrixmorgan.twilight.android.data.model.Location
 import com.delacrixmorgan.twilight.android.data.model.Zone
+import com.delacrixmorgan.twilight.android.hideKeyboard
 import com.delacrixmorgan.twilight.android.ui.zone.ZoneListFragment
 import kotlinx.android.synthetic.main.fragment_form.*
 import kotlinx.android.synthetic.main.layout_navigation_bar.view.*
@@ -91,6 +92,7 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
         }
 
         searchTextView.setOnClickListener {
+            hideKeyboard()
             launchZoneListFragment()
         }
 

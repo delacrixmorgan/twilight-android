@@ -29,6 +29,10 @@ class CreditFragment : Fragment() {
             activity?.supportFragmentManager?.popBackStack()
         }
 
+        spartanImageView.setOnClickListener {
+            launchWebsite("https://github.com/theleagueof/league-spartan")
+        }
+
         threeTenABPImageView.setOnClickListener {
             launchWebsite("https://github.com/JakeWharton/ThreeTenABP")
         }

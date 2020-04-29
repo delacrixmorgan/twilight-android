@@ -13,6 +13,7 @@ import com.delacrixmorgan.twilight.android.data.dao.LocationDataDao
 import com.delacrixmorgan.twilight.android.data.dao.LocationDatabase
 import com.delacrixmorgan.twilight.android.data.model.Location
 import com.delacrixmorgan.twilight.android.ui.location.LocationListFragment
+import kotlinx.android.synthetic.main.fragment_launch.*
 import kotlinx.coroutines.launch
 
 class LaunchFragment : Fragment() {
@@ -35,6 +36,7 @@ class LaunchFragment : Fragment() {
 
         lifecycleScope.launch {
             locationDataDao = LocationDatabase.getInstance(requireContext())?.locationDataDao()
+            buildNumberTextView.text = "v${BuildConfig.VERSION_NAME}#${BuildConfig.VERSION_CODE}"
 
             if (BuildConfig.DEBUG) {
                 val locations = locationDataDao?.getLocations()
@@ -64,50 +66,50 @@ class LaunchFragment : Fragment() {
         locations.addAll(
             listOf(
                 Location(
-                    name = "Columbus",
-                    description = "Yang",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Columbus")
+                    name = "Berlin",
+                    description = "Aerith",
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Berlin")
                         .first().timeZoneId
                 ),
                 Location(
-                    name = "New Jersey",
-                    description = "Ze-Xin, Ze-Wen",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "New Jersey")
+                    name = "Ivory Coast",
+                    description = "Barret",
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Abidjan")
                         .first().timeZoneId
                 ),
                 Location(
-                    name = "San Francisco",
-                    description = "Michael",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "San Francisco")
+                    name = "Uluru",
+                    description = "Nanaki",
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Darwin")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "London",
-                    description = "Ian",
+                    description = "Cait Sith",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "London")
                         .first().timeZoneId
                 ),
                 Location(
-                    name = "Perth",
-                    description = "Teck Hun",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Perth")
+                    name = "Transylvania",
+                    description = "Vincent",
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Bucharest")
                         .first().timeZoneId
                 ),
                 Location(
-                    name = "Tasmania",
-                    description = "Grace",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Tasmania")
+                    name = "Highwind",
+                    description = "Cid",
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Amsterdam")
                         .first().timeZoneId
                 ),
                 Location(
-                    name = "Melbourne",
-                    description = "Maggie",
-                    timeZoneId = ZoneDataController.getZone(searchQuery = "Melbourne")
+                    name = "Kyoto",
+                    description = "Cloud",
+                    timeZoneId = ZoneDataController.getZone(searchQuery = "Tokyo")
                         .first().timeZoneId
                 ),
                 Location(
                     name = "Auckland",
-                    description = "Thomas",
+                    description = "Tifa",
                     timeZoneId = ZoneDataController.getZone(searchQuery = "Auckland")
                         .first().timeZoneId
                 )
