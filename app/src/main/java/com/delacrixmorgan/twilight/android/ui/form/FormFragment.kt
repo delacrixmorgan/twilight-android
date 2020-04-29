@@ -110,6 +110,23 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
             } ?: "Location"
             updateLocation()
         }
+
+        updateViews()
+    }
+
+    private fun updateViews() {
+        navigationBar.actionButton.isEnabled = location?.zone != null
+        descriptionEditText.setText(location?.description)
+        locationNameEditText.setText(location?.zone?.name)
+
+        searchTextView.text = location?.zone?.regionZoneName
+        locationNameEditText.setSelection(location?.zone?.name?.length ?: 0)
+
+        navigationBar.actionButton.isEnabled = isValidForProceeding()
+    }
+
+    private fun isValidForProceeding(): Boolean {
+        return location?.timeZoneId != null
     }
 
     private fun updateLocation() {
@@ -148,15 +165,6 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
             add(android.R.id.content, fragment, fragment::class.simpleName)
             addToBackStack(fragment::class.simpleName)
         }
-    }
-
-    private fun updateViews() {
-        navigationBar.actionButton.isEnabled = location?.zone != null
-        descriptionEditText.setText(location?.description)
-        locationNameEditText.setText(location?.zone?.name)
-
-        searchTextView.text = location?.zone?.regionZoneName
-        locationNameEditText.setSelection(location?.zone?.name?.length ?: 0)
     }
 
     override fun onZoneSelected(zone: Zone) {

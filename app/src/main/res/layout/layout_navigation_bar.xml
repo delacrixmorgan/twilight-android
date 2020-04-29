@@ -43,7 +43,7 @@
         android:text="@string/done"
         android:textAllCaps="true"
         android:textAppearance="@style/Subhead"
-        android:textColor="@color/colorAccent"
+        android:textColor="@drawable/btn_action_state"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"

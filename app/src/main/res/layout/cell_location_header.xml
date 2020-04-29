@@ -57,7 +57,7 @@
             android:layout_gravity="center_horizontal"
             android:textAppearance="@style/Headline"
             android:textColor="@android:color/white"
-            tools:text="Good Morning, Aerith" />
+            tools:text="Good Morning" />
 
         <TextView
             android:id="@+id/headerLocationTextView"

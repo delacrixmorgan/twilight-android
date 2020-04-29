@@ -8,9 +8,9 @@ import org.threeten.bp.ZonedDateTime
 object DateTimeController {
 
     fun getStatus(dateTime: ZonedDateTime): String {
-        return if (dateTime.hour < 7 || dateTime.hour > 19) {
+        return if (dateTime.hour < 3 || dateTime.hour > 19) {
             "🌙"
-        } else if (dateTime.hour == 7 || dateTime.hour == 17 || dateTime.hour == 18) {
+        } else if (dateTime.hour <= 7 || dateTime.hour == 17 || dateTime.hour == 18) {
             "🌤"
         } else {
             "☀"
