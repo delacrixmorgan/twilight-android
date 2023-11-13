@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.delacrixmorgan.twilight.android.R
 import com.delacrixmorgan.twilight.android.launchWebsite
-import kotlinx.android.synthetic.main.fragment_credit.*
 
 class CreditFragment : Fragment() {
 
@@ -25,20 +24,20 @@ class CreditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        backButton.setOnClickListener {
-            activity?.supportFragmentManager?.popBackStack()
-        }
-
-        spartanImageView.setOnClickListener {
-            launchWebsite("https://github.com/theleagueof/league-spartan")
-        }
-
-        threeTenABPImageView.setOnClickListener {
-            launchWebsite("https://github.com/JakeWharton/ThreeTenABP")
-        }
-
-        delesignImageView.setOnClickListener {
-            launchWebsite("https://iconscout.com/illustrations/man-enjoying-vacation")
-        }
+//        backButton.setOnClickListener {
+//            activity?.supportFragmentManager?.popBackStack()
+//        }
+//
+//        spartanImageView.setOnClickListener {
+//            launchWebsite("https://github.com/theleagueof/league-spartan")
+//        }
+//
+//        threeTenABPImageView.setOnClickListener {
+//            launchWebsite("https://github.com/JakeWharton/ThreeTenABP")
+//        }
+//
+//        delesignImageView.setOnClickListener {
+//            launchWebsite("https://iconscout.com/illustrations/man-enjoying-vacation")
+//        }
     }
 }

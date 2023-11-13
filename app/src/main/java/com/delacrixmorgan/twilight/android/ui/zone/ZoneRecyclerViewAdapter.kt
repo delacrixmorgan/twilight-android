@@ -11,7 +11,6 @@ import com.delacrixmorgan.twilight.android.R
 import com.delacrixmorgan.twilight.android.data.controller.DateTimeController
 import com.delacrixmorgan.twilight.android.data.model.Zone
 import com.delacrixmorgan.twilight.android.toZonedDateTime
-import kotlinx.android.synthetic.main.cell_zone_list.view.*
 import org.threeten.bp.ZoneId
 import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
@@ -78,14 +77,14 @@ class ZoneRecyclerViewAdapter(
                 BlendModeCompat.SRC_ATOP
             )
 
-            nameTextView.text = zone.name
-            locationNameTextView.text = zone.keywords[0]
-
-            timeTextView.text = timeString
-            periodTextView.text = periodString
-
-            locationNameTextView.setTextColor(textColor)
-            locationNameTextView.background.colorFilter = backgroundBlendColor
+//            nameTextView.text = zone.name
+//            locationNameTextView.text = zone.keywords[0]
+//
+//            timeTextView.text = timeString
+//            periodTextView.text = periodString
+//
+//            locationNameTextView.setTextColor(textColor)
+//            locationNameTextView.background.colorFilter = backgroundBlendColor
 
             setOnClickListener {
                 listener.onZoneSelected(zone)

@@ -20,7 +20,6 @@ import com.delacrixmorgan.twilight.android.ui.BottomNavigationBottomSheetFragmen
 import com.delacrixmorgan.twilight.android.ui.about.AboutFragment
 import com.delacrixmorgan.twilight.android.ui.credit.CreditFragment
 import com.delacrixmorgan.twilight.android.ui.form.FormActivity
-import kotlinx.android.synthetic.main.fragment_location_list.*
 import java.util.*
 
 class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
@@ -47,15 +46,15 @@ class LocationListFragment : Fragment(), LocationRecyclerViewAdapter.Listener,
         super.onViewCreated(view, savedInstanceState)
 
         adapter.locations = LocationDataController.getLocation().toMutableList()
-        recyclerView.adapter = adapter
-
-        bottomAppBar.setNavigationOnClickListener {
-            showBottomNavigationView()
-        }
-
-        addButton.setOnClickListener {
-            launchFormActivity(formType = FormType.Create)
-        }
+//        recyclerView.adapter = adapter
+//
+//        bottomAppBar.setNavigationOnClickListener {
+//            showBottomNavigationView()
+//        }
+//
+//        addButton.setOnClickListener {
+//            launchFormActivity(formType = FormType.Create)
+//        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.delacrixmorgan.twilight.android.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.fragment_bottom_navigation_bottom_sheet.*
 
 class BottomNavigationBottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -38,13 +37,13 @@ class BottomNavigationBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navigationView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.creditsMenu -> listener.onNavigationViewSelected(MenuItems.Credits)
-                R.id.aboutMenu -> listener.onNavigationViewSelected(MenuItems.About)
-            }
-            dismiss()
-            true
-        }
+//        navigationView.setNavigationItemSelectedListener {
+//            when (it.itemId) {
+//                R.id.creditsMenu -> listener.onNavigationViewSelected(MenuItems.Credits)
+//                R.id.aboutMenu -> listener.onNavigationViewSelected(MenuItems.About)
+//            }
+//            dismiss()
+//            true
+//        }
     }
 }

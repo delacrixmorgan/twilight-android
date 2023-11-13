@@ -21,8 +21,6 @@ import com.delacrixmorgan.twilight.android.data.model.Location
 import com.delacrixmorgan.twilight.android.data.model.Zone
 import com.delacrixmorgan.twilight.android.hideKeyboard
 import com.delacrixmorgan.twilight.android.ui.zone.ZoneListFragment
-import kotlinx.android.synthetic.main.fragment_form.*
-import kotlinx.android.synthetic.main.layout_navigation_bar.view.*
 import kotlinx.coroutines.launch
 
 class FormFragment : Fragment(), ZoneListFragment.Listener {
@@ -62,18 +60,18 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
 
         when (formType) {
             FormType.Create -> {
-                deleteButton.isVisible = false
-                navigationBar.actionButton.text = getString(R.string.done)
-                navigationBar.titleTextView.text = "Create a Location"
+//                deleteButton.isVisible = false
+//                navigationBar.actionButton.text = getString(R.string.done)
+//                navigationBar.titleTextView.text = "Create a Location"
                 location = Location()
             }
             FormType.Edit -> {
                 location = LocationDataController.getLocationById(
                     requireNotNull(arguments?.getString(Keys.Form.LocationUuid.name))
                 )
-                deleteButton.isVisible = true
-                navigationBar.titleTextView.text = "Edit Location"
-                navigationBar.actionButton.text = getString(R.string.save)
+//                deleteButton.isVisible = true
+//                navigationBar.titleTextView.text = "Edit Location"
+//                navigationBar.actionButton.text = getString(R.string.save)
 
                 updateViews()
             }
@@ -83,48 +81,48 @@ class FormFragment : Fragment(), ZoneListFragment.Listener {
             launchZoneListFragment()
         }
 
-        locationNameEditText.doAfterTextChanged {
-            location?.name = it.toString()
-        }
-
-        descriptionEditText.doAfterTextChanged {
-            location?.description = it.toString()
-        }
-
-        searchTextView.setOnClickListener {
-            hideKeyboard()
-            launchZoneListFragment()
-        }
-
-        deleteButton.setOnClickListener {
-            deleteLocation()
-        }
-
-        navigationBar.backButton.setOnClickListener {
-            activity?.finish()
-        }
-
-        navigationBar.actionButton.setOnClickListener {
-            location?.name = if (!location?.name.isNullOrBlank()) {
-                location?.name
-            } else {
-                location?.zone?.name
-            } ?: "Location"
-            updateLocation()
-        }
+//        locationNameEditText.doAfterTextChanged {
+//            location?.name = it.toString()
+//        }
+//
+//        descriptionEditText.doAfterTextChanged {
+//            location?.description = it.toString()
+//        }
+//
+//        searchTextView.setOnClickListener {
+//            hideKeyboard()
+//            launchZoneListFragment()
+//        }
+//
+//        deleteButton.setOnClickListener {
+//            deleteLocation()
+//        }
+//
+//        navigationBar.backButton.setOnClickListener {
+//            activity?.finish()
+//        }
+//
+//        navigationBar.actionButton.setOnClickListener {
+//            location?.name = if (!location?.name.isNullOrBlank()) {
+//                location?.name
+//            } else {
+//                location?.zone?.name
+//            } ?: "Location"
+//            updateLocation()
+//        }
 
         updateViews()
     }
 
     private fun updateViews() {
-        navigationBar.actionButton.isEnabled = location?.zone != null
-        descriptionEditText.setText(location?.description)
-        locationNameEditText.setText(location?.zone?.name)
-
-        searchTextView.text = location?.zone?.regionZoneName
-        locationNameEditText.setSelection(location?.zone?.name?.length ?: 0)
-
-        navigationBar.actionButton.isEnabled = isValidForProceeding()
+//        navigationBar.actionButton.isEnabled = location?.zone != null
+//        descriptionEditText.setText(location?.description)
+//        locationNameEditText.setText(location?.zone?.name)
+//
+//        searchTextView.text = location?.zone?.regionZoneName
+//        locationNameEditText.setSelection(location?.zone?.name?.length ?: 0)
+//
+//        navigationBar.actionButton.isEnabled = isValidForProceeding()
     }
 
     private fun isValidForProceeding(): Boolean {

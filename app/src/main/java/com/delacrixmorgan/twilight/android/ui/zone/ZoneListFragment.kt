@@ -10,7 +10,6 @@ import com.delacrixmorgan.twilight.android.R
 import com.delacrixmorgan.twilight.android.data.controller.ZoneDataController
 import com.delacrixmorgan.twilight.android.data.model.Zone
 import com.delacrixmorgan.twilight.android.hideKeyboard
-import kotlinx.android.synthetic.main.fragment_zone_list.*
 
 class ZoneListFragment : Fragment(), ZoneRecyclerViewAdapter.Listener {
 
@@ -39,27 +38,27 @@ class ZoneListFragment : Fragment(), ZoneRecyclerViewAdapter.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                hideKeyboard()
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.zones = ZoneDataController.getZone(
-                    searchQuery = newText
-                ).toMutableList()
-                recyclerView.scrollToPosition(0)
-                return true
-            }
-        })
-
-        backButton.setOnClickListener {
-            activity?.supportFragmentManager?.popBackStack()
-        }
-
-        adapter.zones = ZoneDataController.getZone().toMutableList()
-        recyclerView.adapter = adapter
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                hideKeyboard()
+//                return true
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                adapter.zones = ZoneDataController.getZone(
+//                    searchQuery = newText
+//                ).toMutableList()
+//                recyclerView.scrollToPosition(0)
+//                return true
+//            }
+//        })
+//
+//        backButton.setOnClickListener {
+//            activity?.supportFragmentManager?.popBackStack()
+//        }
+//
+//        adapter.zones = ZoneDataController.getZone().toMutableList()
+//        recyclerView.adapter = adapter
     }
 
     override fun onZoneSelected(zone: Zone) {

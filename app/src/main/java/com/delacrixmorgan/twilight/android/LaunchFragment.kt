@@ -13,7 +13,6 @@ import com.delacrixmorgan.twilight.android.data.dao.LocationDataDao
 import com.delacrixmorgan.twilight.android.data.dao.LocationDatabase
 import com.delacrixmorgan.twilight.android.data.model.Location
 import com.delacrixmorgan.twilight.android.ui.location.LocationListFragment
-import kotlinx.android.synthetic.main.fragment_launch.*
 import kotlinx.coroutines.launch
 
 class LaunchFragment : Fragment() {
@@ -36,21 +35,21 @@ class LaunchFragment : Fragment() {
 
         lifecycleScope.launch {
             locationDataDao = LocationDatabase.getInstance(requireContext())?.locationDataDao()
-            buildNumberTextView.text = "v${BuildConfig.VERSION_NAME}#${BuildConfig.VERSION_CODE}"
-
-            if (BuildConfig.DEBUG) {
-                val locations = locationDataDao?.getLocations()
-                if (!locations.isNullOrEmpty()) {
-                    LocationDataController.locations = locations.toMutableList()
-                    launchLocationListFragment()
-                } else {
-                    fetchLocations()
-                }
-            } else {
-                val locations = locationDataDao?.getLocations()
-                LocationDataController.locations = locations?.toMutableList() ?: mutableListOf()
-                launchLocationListFragment()
-            }
+//            buildNumberTextView.text = "v${BuildConfig.VERSION_NAME}#${BuildConfig.VERSION_CODE}"
+//
+//            if (BuildConfig.DEBUG) {
+//                val locations = locationDataDao?.getLocations()
+//                if (!locations.isNullOrEmpty()) {
+//                    LocationDataController.locations = locations.toMutableList()
+//                    launchLocationListFragment()
+//                } else {
+//                    fetchLocations()
+//                }
+//            } else {
+//                val locations = locationDataDao?.getLocations()
+//                LocationDataController.locations = locations?.toMutableList() ?: mutableListOf()
+//                launchLocationListFragment()
+//            }
         }
     }
 

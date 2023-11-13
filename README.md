@@ -19,7 +19,7 @@ Fret not! Now, you can attach your friends, family names and even fun little nam
 You can just easily add them as:
 - “Little Simba 😸”
 - “Eggs and Ham 🥚”
-- “My Little Princess 👸”
+- “My Little Princess 👸”g
 
 It makes it easy to keep track of all of them around the globe in different timezones in one place.
 

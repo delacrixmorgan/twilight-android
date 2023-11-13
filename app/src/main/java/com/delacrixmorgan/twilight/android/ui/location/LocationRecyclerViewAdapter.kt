@@ -12,8 +12,6 @@ import com.delacrixmorgan.twilight.android.data.controller.DateTimeController
 import com.delacrixmorgan.twilight.android.data.model.Location
 import com.delacrixmorgan.twilight.android.getZoneCity
 import com.delacrixmorgan.twilight.android.toZonedDateTime
-import kotlinx.android.synthetic.main.cell_location_header.view.*
-import kotlinx.android.synthetic.main.cell_location_list.view.*
 import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 
@@ -105,13 +103,13 @@ class LocationRecyclerViewAdapter(
                 BlendModeCompat.SRC_ATOP
             )
 
-            headerTimeTextView.text = timeString
-            headerPeriodTextView.text = periodString
-            headerGreetingsTextView.text = greetingString
-            headerLocationTextView.text = zonedDateTime.getZoneCity()
-
-            headerLocationTextView.setTextColor(textColor)
-            headerLocationTextView.background.colorFilter = backgroundBlendColor
+//            headerTimeTextView.text = timeString
+//            headerPeriodTextView.text = periodString
+//            headerGreetingsTextView.text = greetingString
+//            headerLocationTextView.text = zonedDateTime.getZoneCity()
+//
+//            headerLocationTextView.setTextColor(textColor)
+//            headerLocationTextView.background.colorFilter = backgroundBlendColor
         }
     }
 
@@ -127,19 +125,19 @@ class LocationRecyclerViewAdapter(
                 BlendModeCompat.SRC_ATOP
             )
 
-            locationNameTextView.setTextColor(textColor)
-            locationNameTextView.background.colorFilter = backgroundBlendColor
-
-            timeTextView.text = timeString
-            periodTextView.text = periodString
-            statusTextView.text = DateTimeController.getStatus(zonedDateTime)
-            descriptionTextView.text = if (!location.description.isNullOrBlank()) {
-                location.description
-            } else {
-                location.name
-            }
-
-            locationNameTextView.text = location.name
+//            locationNameTextView.setTextColor(textColor)
+//            locationNameTextView.background.colorFilter = backgroundBlendColor
+//
+//            timeTextView.text = timeString
+//            periodTextView.text = periodString
+//            statusTextView.text = DateTimeController.getStatus(zonedDateTime)
+//            descriptionTextView.text = if (!location.description.isNullOrBlank()) {
+//                location.description
+//            } else {
+//                location.name
+//            }
+//
+//            locationNameTextView.text = location.name
 
             setOnClickListener {
                 listener.onLocationSelected(location)
