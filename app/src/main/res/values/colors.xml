@@ -1,33 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/primaryColor</color>
-    <color name="colorPrimaryDark">@color/primaryDarkColor</color>
-    <color name="colorAccent">@color/secondaryColor</color>
-
-    <color name="primaryColor">#212121</color>
-    <color name="primaryLightColor">#484848</color>
-    <color name="primaryDarkColor">#000000</color>
-    <color name="secondaryColor">#ffc107</color>
-    <color name="secondaryLightColor">#fff350</color>
-    <color name="secondaryDarkColor">#c79100</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
-
-    <color name="colorDestructive">#E91E63</color>
-
-    <color name="colorBlack0DP">#121212</color>
-    <color name="colorBlack1DP">#1e1e1e</color>
-    <color name="colorBlack2DP">#232323</color>
-    <color name="colorBlack3DP">#252525</color>
-    <color name="colorBlack4DP">#272727</color>
-
-    <color name="colorBlack6DP">#2c2c2c</color>
-    <color name="colorBlack8DP">#2e2e2e</color>
-    <color name="colorBlack12DP">#333333</color>
-    <color name="colorBlack16DP">#363636</color>
-    <color name="colorBlack24DP">#383838</color>
-
-    <color name="colorTintNight">@color/primaryLightColor</color>
-    <color name="colorTintDawn">@color/colorAccent</color>
-    <color name="colorTintDay">#1976d2</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>

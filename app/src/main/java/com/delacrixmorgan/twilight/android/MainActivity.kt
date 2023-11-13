@@ -1,20 +1,45 @@
 package com.delacrixmorgan.twilight.android
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
-import com.jakewharton.threetenabp.AndroidThreeTen
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
+import com.delacrixmorgan.twilight.android.ui.theme.AppTheme
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        AndroidThreeTen.init(this)
-
-        val fragment = LaunchFragment.create()
-        supportFragmentManager.commit {
-            replace(android.R.id.content, fragment, fragment.javaClass.simpleName)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        setContent {
+            AppTheme {
+                AppScaffold {
+                    Column(it) {
+                        Greeting("Twilight")
+                    }
+                }
+            }
         }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier,
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    AppTheme {
+        Greeting("Android")
     }
 }
