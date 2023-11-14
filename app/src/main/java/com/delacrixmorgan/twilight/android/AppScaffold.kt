@@ -14,9 +14,10 @@ import androidx.compose.ui.Modifier
 @Composable
 fun AppScaffold(
     gesturesPadding: Boolean = true,
+    bottomBar: @Composable () -> Unit,
     content: @Composable (Modifier) -> Unit,
 ) {
-    Scaffold {
+    Scaffold(bottomBar = bottomBar) {
         val insetModifier = if (gesturesPadding) {
             Modifier
                 .fillMaxSize()

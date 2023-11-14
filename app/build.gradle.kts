@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.delacrixmorgan.twilight.android"
-        minSdk = 22
+        minSdk = 26
         targetSdk = 34
         versionCode = 3
         versionName = "2023.1"
@@ -58,6 +58,7 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
