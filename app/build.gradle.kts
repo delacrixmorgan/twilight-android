@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.delacrixmorgan.twilight.android"
-        minSdk = 26
+        minSdk = 21
         targetSdk = 34
         versionCode = 3
         versionName = "2023.1"
@@ -30,6 +30,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_18
         targetCompatibility = JavaVersion.VERSION_18
     }
@@ -59,6 +60,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    // Supports Java Time for API 21 with isCoreLibraryDesugaringEnabled
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
