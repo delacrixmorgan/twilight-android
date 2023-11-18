@@ -8,18 +8,7 @@ import java.time.format.DateTimeFormatter
 
 
 class TimezoneUnitTest {
-
-//    private val availableZones get() = ZoneId.getAvailableZoneIds()
-//    private val zones = availableZones.filter {
-//        it.contains("America/") || it.contains("US/")
-//                || it.contains("Europe/") || it.contains("Asia/")
-//                || it.contains("Australia/") || it.contains("Pacific/")
-//                || it.contains("Mexico/") || it.contains("Indian/")
-//                || it.contains("Canada/") || it.contains("Antarctica/")
-//                || it.contains("Atlantic/") || it.contains("Brazil/")
-//                || it.contains("Africa/")
-//    }
-
+    
     private val ISO_8601 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
 
     @Test

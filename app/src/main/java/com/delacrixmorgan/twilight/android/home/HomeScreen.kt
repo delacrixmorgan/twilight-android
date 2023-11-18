@@ -1,6 +1,5 @@
-package com.delacrixmorgan.twilight.android.timezone
+package com.delacrixmorgan.twilight.android.home
 
-import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,24 +13,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.twilight.android.data.timezone.TimezoneRepository
 import com.delacrixmorgan.twilight.android.data.timezone.localTime
 import com.delacrixmorgan.twilight.android.ui.theme.Typography
+import java.time.ZoneId
 
 @Composable
-fun TimezoneScreen(
+fun HomeScreen(
     modifier: Modifier,
-    context: Context = LocalContext.current,
-    viewModel: TimezoneViewModel = TimezoneViewModel()
 ) {
     val state = rememberLazyListState()
-    val list = remember { TimezoneRepository.timezones }
+    val list = remember {
+        val savedTimezones = listOf(
+            ZoneId.of("America/New_York"),
+            ZoneId.of("Europe/London"),
+            ZoneId.of("Asia/Kuala_Lumpur"),
+            ZoneId.of("Australia/Melbourne"),
+            ZoneId.of("Pacific/Auckland"),
+        )
+        TimezoneRepository.timezones
+            .filter { it.zoneId in savedTimezones }
+            .sortedBy { savedTimezones.indexOf(it.zoneId) }
+    }
 
     Column(modifier) {
-        Text(text = "Timezone", style = Typography.headlineLarge)
+        Text(text = "Home", style = Typography.headlineLarge)
         LazyColumn(
             Modifier.fillMaxWidth(),
             state = state,
@@ -63,4 +71,3 @@ fun TimezoneScreen(
         }
     }
 }
-

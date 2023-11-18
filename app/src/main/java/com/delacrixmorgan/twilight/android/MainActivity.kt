@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.LocationCity
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -19,6 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.delacrixmorgan.twilight.android.home.HomeScreen
 import com.delacrixmorgan.twilight.android.timezone.TimezoneScreen
 import com.delacrixmorgan.twilight.android.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +35,8 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 val navController = rememberNavController()
                 AppScaffold(bottomBar = { NavigationBar(navController) }) { modifier ->
-                    NavHost(navController = navController, startDestination = BottomNavItem.Timezone.route) {
+                    NavHost(navController = navController, startDestination = BottomNavItem.values().first().route) {
+                        composable(BottomNavItem.Home.route) { HomeScreen(modifier) }
                         composable(BottomNavItem.Timezone.route) { TimezoneScreen(modifier) }
                     }
                 }
@@ -70,6 +73,11 @@ enum class BottomNavItem(
     val route: String,
     val icon: ImageVector,
 ) {
+    Home(
+        "Home",
+        "home",
+        Icons.Rounded.Home
+    ),
     Timezone(
         "Timezone",
         "timezone",
